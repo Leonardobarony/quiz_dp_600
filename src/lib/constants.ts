@@ -12,11 +12,11 @@ export const DOMAIN_WEIGHTS: Record<DomainNumber, number> = {
   3: 0.275,
 }
 
-export const SIMULATION_TOTAL_QUESTIONS = 40
+export const SIMULATION_TOTAL_QUESTIONS = 60
 export const SIMULATION_DOMAIN_COUNTS: Record<DomainNumber, number> = {
-  1: 11,
-  2: 19,
-  3: 10,
+  1: 17,
+  2: 28,
+  3: 15,
 }
 
 export const SIMULATION_DURATION_SECONDS = 100 * 60
