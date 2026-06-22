@@ -5,7 +5,7 @@ const modes = [
   {
     href: '/quiz/simulation',
     title: 'Simulado Completo',
-    description: '40 questões, 100 minutos — todos os domínios proporcionalmente',
+    description: '60 questões, 100 minutos — todos os domínios proporcionalmente',
     icon: '🎯',
     accentClass: 'border-purple-200 hover:border-purple-400',
   },
