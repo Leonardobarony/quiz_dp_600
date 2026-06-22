@@ -1,0 +1,1702 @@
+[
+  {
+    "id": "d1-1-1",
+    "domain": 1,
+    "subdomain": "1.1",
+    "topic": "Implement workspace-level access controls",
+    "difficulty": "easy",
+    "question": "Um engenheiro de dados precisa garantir que apenas membros de uma equipe específica possam visualizar relatórios em um workspace do Microsoft Fabric. Qual função de workspace deve ser atribuída a esses membros?",
+    "options": {
+      "A": "Admin",
+      "B": "Member",
+      "C": "Contributor",
+      "D": "Viewer"
+    },
+    "correct_answer": "D",
+    "explanation": "A função Viewer permite que os usuários visualizem itens no workspace (relatórios, dashboards, datasets), mas não podem editar nem criar itens. É a função com menores privilégios adequada para consumidores de relatórios.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/get-started/roles-workspaces"
+  },
+  {
+    "id": "d1-1-2",
+    "domain": 1,
+    "subdomain": "1.1",
+    "topic": "Implement item-level access controls",
+    "difficulty": "medium",
+    "question": "Um analista precisa acessar apenas um relatório específico de um workspace, sem ver outros itens. Qual é a abordagem correta no Microsoft Fabric?",
+    "options": {
+      "A": "Atribuir a função Viewer ao analista no workspace",
+      "B": "Compartilhar o relatório diretamente com o analista via link de compartilhamento",
+      "C": "Adicionar o analista como Member do workspace",
+      "D": "Publicar o relatório em um App do Power BI e dar acesso ao analista"
+    },
+    "correct_answer": "D",
+    "explanation": "Publicar um Power BI App permite controle de acesso granular a nível de item. O usuário acessa apenas os itens incluídos no App, sem precisar ser membro do workspace. O compartilhamento direto (B) também funciona, mas Apps são a prática recomendada para distribuição em escala.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/collaborate-share/service-create-distribute-apps"
+  },
+  {
+    "id": "d1-1-3",
+    "domain": 1,
+    "subdomain": "1.1",
+    "topic": "Implement row-level security",
+    "difficulty": "medium",
+    "question": "Uma empresa quer que gerentes regionais vejam apenas dados de suas próprias regiões em um relatório do Power BI. Qual recurso do Microsoft Fabric deve ser configurado no modelo semântico?",
+    "options": {
+      "A": "Column-level security (CLS)",
+      "B": "Row-level security (RLS)",
+      "C": "Object-level security (OLS)",
+      "D": "Sensitivity labels"
+    },
+    "correct_answer": "B",
+    "explanation": "Row-level security (RLS) restringe o acesso a linhas de dados com base no usuário logado. É configurado no modelo semântico através de filtros DAX aplicados a funções de segurança, garantindo que cada gerente veja apenas dados de sua região.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/security/service-admin-row-level-security"
+  },
+  {
+    "id": "d1-1-4",
+    "domain": 1,
+    "subdomain": "1.1",
+    "topic": "Implement column-level security",
+    "difficulty": "medium",
+    "question": "Um modelo semântico contém uma coluna 'Salário' que deve ser visível apenas para o time de RH. Qual recurso deve ser usado para ocultar essa coluna de outros usuários?",
+    "options": {
+      "A": "Row-level security (RLS)",
+      "B": "Sensitivity labels",
+      "C": "Object-level security (OLS)",
+      "D": "Workspace roles"
+    },
+    "correct_answer": "C",
+    "explanation": "Object-level security (OLS) permite ocultar tabelas ou colunas específicas de usuários não autorizados. Diferente do RLS (que filtra linhas), o OLS restringe o acesso ao próprio objeto/coluna, como a coluna 'Salário'.",
+    "reference_url": "https://learn.microsoft.com/pt-br/analysis-services/tabular-models/object-level-security"
+  },
+  {
+    "id": "d1-1-5",
+    "domain": 1,
+    "subdomain": "1.1",
+    "topic": "Apply sensitivity labels",
+    "difficulty": "easy",
+    "question": "Uma organização precisa classificar seus relatórios do Power BI como 'Confidencial' para fins de conformidade. Qual recurso do Microsoft Fabric permite aplicar essa classificação?",
+    "options": {
+      "A": "Workspace roles",
+      "B": "Sensitivity labels do Microsoft Purview",
+      "C": "Row-level security",
+      "D": "Endorsed items"
+    },
+    "correct_answer": "B",
+    "explanation": "Os sensitivity labels do Microsoft Purview permitem classificar e proteger itens do Fabric (relatórios, datasets, lakehouses, etc.) com rótulos como 'Confidencial' ou 'Altamente Confidencial'. Esses rótulos são herdados do Microsoft 365 e integram-se com políticas de DLP.",
+    "reference_url": "https://learn.microsoft.com/en-us/fabric/governance/information-protection"
+  },
+  {
+    "id": "d1-1-6",
+    "domain": 1,
+    "subdomain": "1.1",
+    "topic": "Endorse items",
+    "difficulty": "easy",
+    "question": "Um time de dados quer indicar que um determinado dataset é a fonte de dados oficial e aprovada da empresa. Qual recurso do Microsoft Fabric deve ser usado?",
+    "options": {
+      "A": "Aplicar sensitivity label 'Interno'",
+      "B": "Certificar o dataset usando Endorsement",
+      "C": "Adicionar o dataset a um App do Power BI",
+      "D": "Configurar RLS no dataset"
+    },
+    "correct_answer": "B",
+    "explanation": "O recurso Endorsement permite promover ou certificar itens do Fabric. 'Promoted' indica que o item é recomendado, enquanto 'Certified' indica aprovação oficial pela organização. Certificar um dataset sinaliza para todos os usuários que ele é a fonte de dados oficial e confiável.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/get-started/endorsement-promote-certify"
+  },
+  {
+    "id": "d1-1-7",
+    "domain": 1,
+    "subdomain": "1.1",
+    "topic": "Implement file-level access control",
+    "difficulty": "hard",
+    "question": "Um engenheiro de dados armazena arquivos sensíveis em um Lakehouse no Microsoft Fabric. Ele quer que apenas um grupo específico do Azure Active Directory tenha acesso de leitura a uma pasta específica. Qual é a abordagem correta?",
+    "options": {
+      "A": "Configurar RLS no modelo semântico conectado ao Lakehouse",
+      "B": "Usar o OneLake RBAC para conceder permissões de leitura à pasta específica",
+      "C": "Atribuir a função Viewer no workspace para o grupo",
+      "D": "Compartilhar o Lakehouse diretamente com o grupo"
+    },
+    "correct_answer": "B",
+    "explanation": "O OneLake RBAC (Role-Based Access Control) permite configurar permissões granulares a nível de pasta e arquivo dentro do OneLake, usando grupos do Azure Active Directory. Isso garante controle de acesso no nível de armazenamento, independente das permissões do workspace.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/onelake/security/get-started-security"
+  },
+  {
+    "id": "d1-1-8",
+    "domain": 1,
+    "subdomain": "1.1",
+    "topic": "Implement workspace-level access controls",
+    "difficulty": "hard",
+    "question": "Uma empresa tem um workspace de desenvolvimento onde engenheiros precisam criar e modificar itens, mas não devem poder publicar conteúdo ou gerenciar o workspace. Qual função é mais adequada?",
+    "options": {
+      "A": "Admin",
+      "B": "Member",
+      "C": "Contributor",
+      "D": "Viewer"
+    },
+    "correct_answer": "C",
+    "explanation": "A função Contributor permite criar, editar e excluir itens no workspace, mas não pode publicar Apps, compartilhar itens ou gerenciar o workspace (o que é reservado para Admin e Member). É a função adequada para engenheiros de desenvolvimento que não devem ter privilégios administrativos.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/get-started/roles-workspaces"
+  },
+  {
+    "id": "d1-2-1",
+    "domain": 1,
+    "subdomain": "1.2",
+    "topic": "Configure version control for a workspace",
+    "difficulty": "medium",
+    "question": "Um time de engenharia quer usar controle de versão para seus itens do Microsoft Fabric, permitindo rastrear mudanças e colaborar via Git. Qual recurso deve ser configurado?",
+    "options": {
+      "A": "Deployment pipelines",
+      "B": "Git integration no workspace",
+      "C": "Power BI Desktop project (.pbip)",
+      "D": "XMLA endpoint"
+    },
+    "correct_answer": "B",
+    "explanation": "A integração Git no Microsoft Fabric permite conectar um workspace a um repositório Azure DevOps ou GitHub. Isso habilita controle de versão, branches, pull requests e colaboração para itens do Fabric como notebooks, pipelines e modelos semânticos.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/cicd/git-integration/intro-to-git-integration"
+  },
+  {
+    "id": "d1-2-2",
+    "domain": 1,
+    "subdomain": "1.2",
+    "topic": "Create and manage a Power BI Desktop project (.pbip)",
+    "difficulty": "medium",
+    "question": "Um desenvolvedor quer armazenar seu arquivo do Power BI em um repositório Git para colaboração com a equipe. Qual formato de arquivo deve ser usado?",
+    "options": {
+      "A": ".pbix",
+      "B": ".pbit",
+      "C": ".pbip",
+      "D": ".pbids"
+    },
+    "correct_answer": "C",
+    "explanation": "O formato .pbip (Power BI Desktop Project) armazena o relatório e o modelo de dados como arquivos de texto (JSON/TMDL), tornando-os compatíveis com sistemas de controle de versão como Git. Diferente do .pbix (binário), o .pbip permite diffs e merges eficientes.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/developer/projects/projects-overview"
+  },
+  {
+    "id": "d1-2-3",
+    "domain": 1,
+    "subdomain": "1.2",
+    "topic": "Create and configure deployment pipelines",
+    "difficulty": "easy",
+    "question": "Uma empresa quer promover automaticamente itens do Microsoft Fabric do ambiente de desenvolvimento para homologação e depois para produção. Qual recurso deve ser usado?",
+    "options": {
+      "A": "Git integration",
+      "B": "Deployment pipelines",
+      "C": "XMLA endpoint",
+      "D": "Power BI Apps"
+    },
+    "correct_answer": "B",
+    "explanation": "Os Deployment Pipelines do Microsoft Fabric permitem criar pipelines com estágios (desenvolvimento, homologação, produção) para promover itens entre workspaces de forma controlada, com suporte a regras de deployment para ajustar configurações entre ambientes.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/cicd/deployment-pipelines/intro-to-deployment-pipelines"
+  },
+  {
+    "id": "d1-2-4",
+    "domain": 1,
+    "subdomain": "1.2",
+    "topic": "Perform impact analysis",
+    "difficulty": "medium",
+    "question": "Um engenheiro vai modificar um Lakehouse que alimenta vários dataflows e modelos semânticos. Antes de fazer a mudança, ele quer ver quais itens serão afetados. O que deve usar?",
+    "options": {
+      "A": "Deployment pipelines",
+      "B": "Git integration",
+      "C": "Impact analysis no Fabric portal",
+      "D": "XMLA endpoint"
+    },
+    "correct_answer": "C",
+    "explanation": "O Impact Analysis no Microsoft Fabric permite visualizar as dependências downstream de um item (Lakehouse, dataset, dataflow, etc.), mostrando quais outros itens serão afetados por uma mudança. Isso é acessível pelo portal do Fabric através do lineage view.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/collaborate-share/service-dataset-impact-analysis"
+  },
+  {
+    "id": "d1-2-5",
+    "domain": 1,
+    "subdomain": "1.2",
+    "topic": "Deploy semantic models via XMLA endpoint",
+    "difficulty": "hard",
+    "question": "Um administrador precisa implantar e atualizar modelos semânticos usando ferramentas externas como o Tabular Editor. Qual recurso do Microsoft Fabric deve ser habilitado?",
+    "options": {
+      "A": "Git integration",
+      "B": "Deployment pipelines",
+      "C": "XMLA endpoint",
+      "D": "Power BI Embedded"
+    },
+    "correct_answer": "C",
+    "explanation": "O XMLA endpoint permite que ferramentas de terceiros (como Tabular Editor, SQL Server Management Studio, DAX Studio) se conectem diretamente a modelos semânticos no Microsoft Fabric para operações como deploy, processamento, consulta e gerenciamento usando o protocolo Analysis Services.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/enterprise/service-premium-connect-tools"
+  },
+  {
+    "id": "d1-2-6",
+    "domain": 1,
+    "subdomain": "1.2",
+    "topic": "Create reusable assets",
+    "difficulty": "easy",
+    "question": "Um desenvolvedor quer criar um template de relatório do Power BI que inclui o layout e as conexões de dados, mas sem os dados em si, para que outros membros da equipe possam reutilizar. Qual formato deve usar?",
+    "options": {
+      "A": ".pbix",
+      "B": ".pbit",
+      "C": ".pbip",
+      "D": ".pbids"
+    },
+    "correct_answer": "B",
+    "explanation": "O formato .pbit (Power BI Template) contém a estrutura do relatório, modelo de dados e parâmetros, mas não inclui os dados. É ideal para compartilhar templates reutilizáveis onde cada usuário fornece sua própria conexão de dados.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/create-reports/desktop-templates"
+  },
+  {
+    "id": "d1-2-7",
+    "domain": 1,
+    "subdomain": "1.2",
+    "topic": "Create reusable assets - shared semantic models",
+    "difficulty": "medium",
+    "question": "Vários times da empresa usam as mesmas métricas de negócio. Um engenheiro quer criar um modelo semântico centralizado que todos os relatórios possam reutilizar sem duplicar a lógica de negócio. Qual abordagem deve usar?",
+    "options": {
+      "A": "Criar um .pbit para cada time",
+      "B": "Publicar um modelo semântico compartilhado (shared semantic model) no Fabric",
+      "C": "Usar deployment pipelines para copiar o modelo entre workspaces",
+      "D": "Exportar o modelo como .pbids"
+    },
+    "correct_answer": "B",
+    "explanation": "Shared semantic models (modelos semânticos compartilhados) permitem publicar um único modelo semântico que pode ser conectado por múltiplos relatórios de diferentes workspaces. Isso centraliza a lógica de negócio (métricas, relacionamentos, RLS) e evita duplicação.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/connect-data/service-datasets-across-workspaces"
+  },
+  {
+    "id": "d1-2-8",
+    "domain": 1,
+    "subdomain": "1.2",
+    "topic": "Configure deployment pipelines",
+    "difficulty": "hard",
+    "question": "Ao usar deployment pipelines no Microsoft Fabric, um engenheiro precisa que a string de conexão do banco de dados mude automaticamente quando um modelo semântico é promovido do ambiente de desenvolvimento para produção. Como fazer isso?",
+    "options": {
+      "A": "Editar manualmente o modelo após cada promoção",
+      "B": "Configurar deployment rules no pipeline para sobrescrever parâmetros por estágio",
+      "C": "Usar variáveis de ambiente do workspace",
+      "D": "Criar um modelo separado para cada ambiente"
+    },
+    "correct_answer": "B",
+    "explanation": "As deployment rules nos pipelines do Fabric permitem configurar substituições automáticas de parâmetros (como connection strings, nomes de banco de dados) quando um item é promovido entre estágios. Isso garante que as configurações corretas sejam aplicadas automaticamente em cada ambiente.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/cicd/deployment-pipelines/create-rules"
+  },
+  {
+    "id": "d2-1-1",
+    "domain": 2,
+    "subdomain": "2.1",
+    "topic": "Create a data connection",
+    "difficulty": "easy",
+    "question": "Um engenheiro de dados precisa conectar um Dataflow Gen2 no Microsoft Fabric a um banco de dados SQL Server on-premises protegido por firewall corporativo. Qual componente é necessário para estabelecer essa conexão?",
+    "options": {
+      "A": "Azure ExpressRoute",
+      "B": "On-premises data gateway",
+      "C": "VPN Gateway do Azure",
+      "D": "Azure Private Link"
+    },
+    "correct_answer": "B",
+    "explanation": "O On-premises data gateway age como uma ponte entre fontes de dados locais (on-premises) e serviços de nuvem como Microsoft Fabric. Ele permite que Dataflows, modelos semânticos e outros itens do Fabric acessem dados em redes privadas sem expô-las à internet.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/data-factory/dataflows-gen2-overview"
+  },
+  {
+    "id": "d2-1-2",
+    "domain": 2,
+    "subdomain": "2.1",
+    "topic": "Discover data using OneLake catalog",
+    "difficulty": "easy",
+    "question": "Um analista quer encontrar datasets disponíveis na organização para criar um relatório, sem precisar solicitar acesso a cada time separadamente. Qual recurso do Microsoft Fabric deve usar?",
+    "options": {
+      "A": "Power BI Apps",
+      "B": "OneLake catalog",
+      "C": "Deployment pipelines",
+      "D": "Fabric Admin portal"
+    },
+    "correct_answer": "B",
+    "explanation": "O OneLake catalog (anteriormente conhecido como Data hub) é um repositório centralizado de descoberta de dados no Microsoft Fabric. Permite encontrar, explorar e solicitar acesso a todos os itens de dados da organização, incluindo datasets, lakehouses, warehouses e dataflows.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/governance/onelake-catalog-overview"
+  },
+  {
+    "id": "d2-1-3",
+    "domain": 2,
+    "subdomain": "2.1",
+    "topic": "Ingest data",
+    "difficulty": "medium",
+    "question": "Um engenheiro precisa ingerir dados de uma API REST externa que retorna JSON para um Lakehouse no Microsoft Fabric. Qual é a abordagem mais adequada para automatizar essa ingestão?",
+    "options": {
+      "A": "Importar manualmente os arquivos JSON para o Lakehouse",
+      "B": "Usar um Data Pipeline com atividade Web para chamar a API e salvar no Lakehouse",
+      "C": "Criar um Dataflow Gen2 com conector REST",
+      "D": "Usar o Eventstream para capturar dados da API"
+    },
+    "correct_answer": "B",
+    "explanation": "Data Pipelines no Microsoft Fabric oferecem uma atividade Web que pode chamar APIs REST, e em conjunto com outras atividades (Copy Data, ForEach) permitem automatizar a ingestão de dados JSON em Lakehouses. Para ingestão mais simples, o Dataflow Gen2 (C) também é válido, mas Data Pipelines oferecem mais controle para cenários complexos.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/data-factory/data-factory-overview"
+  },
+  {
+    "id": "d2-1-4",
+    "domain": 2,
+    "subdomain": "2.1",
+    "topic": "Choose between different data stores",
+    "difficulty": "medium",
+    "question": "Uma empresa precisa armazenar dados históricos de transações (bilhões de linhas) para análises complexas com SQL. Os dados são estruturados e raramente modificados após a carga. Qual data store do Microsoft Fabric é mais adequado?",
+    "options": {
+      "A": "KQL Database (Eventhouse)",
+      "B": "Lakehouse",
+      "C": "Warehouse",
+      "D": "Dataflow Gen2"
+    },
+    "correct_answer": "C",
+    "explanation": "O Warehouse no Microsoft Fabric é otimizado para workloads analíticos SQL em dados estruturados em grande escala. Suporta transações ACID, esquema relacional completo (tabelas, views, stored procedures) e é ideal para dados históricos com acesso SQL intensivo. O Lakehouse (B) é melhor para dados semi-estruturados e quando você precisa de flexibilidade de schema.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/data-warehouse/data-warehousing"
+  },
+  {
+    "id": "d2-1-5",
+    "domain": 2,
+    "subdomain": "2.1",
+    "topic": "Choose between different data stores",
+    "difficulty": "medium",
+    "question": "Um time de ciência de dados precisa armazenar dados brutos em formatos variados (Parquet, CSV, JSON, imagens) e processá-los com notebooks Python/Spark. Qual data store do Microsoft Fabric é mais adequado?",
+    "options": {
+      "A": "Warehouse",
+      "B": "KQL Database",
+      "C": "Lakehouse",
+      "D": "Dataflow Gen2"
+    },
+    "correct_answer": "C",
+    "explanation": "O Lakehouse no Microsoft Fabric é baseado no Delta Lake e suporta múltiplos formatos de arquivo (Parquet, CSV, JSON, imagens) armazenados no OneLake. É nativamente integrado com Spark notebooks para processamento com Python/PySpark/Scala, sendo ideal para workloads de ciência de dados e ETL flexível.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/data-engineering/lakehouse-overview"
+  },
+  {
+    "id": "d2-1-6",
+    "domain": 2,
+    "subdomain": "2.1",
+    "topic": "Implement OneLake integration for Eventhouse",
+    "difficulty": "hard",
+    "question": "Um engenheiro quer que os dados do Eventhouse (KQL Database) estejam disponíveis para consulta pelo Lakehouse, sem duplicar o armazenamento. Qual recurso deve ser habilitado?",
+    "options": {
+      "A": "Configurar um Dataflow para copiar dados do Eventhouse para o Lakehouse",
+      "B": "Habilitar a disponibilidade do OneLake no Eventhouse",
+      "C": "Criar um shortcut do Lakehouse apontando para o Eventhouse",
+      "D": "Usar um Data Pipeline para sincronizar os dados periodicamente"
+    },
+    "correct_answer": "B",
+    "explanation": "Habilitando a disponibilidade do OneLake no Eventhouse, os dados do KQL Database são automaticamente expostos no OneLake como arquivos Delta/Parquet. Isso permite que Lakehouses, notebooks Spark e outros itens do Fabric acessem os dados sem duplicação, usando shortcuts para referenciar o mesmo dado.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/real-time-intelligence/event-house-onelake-availability"
+  },
+  {
+    "id": "d2-1-7",
+    "domain": 2,
+    "subdomain": "2.1",
+    "topic": "Discover data using Real-Time hub",
+    "difficulty": "medium",
+    "question": "Um engenheiro de streaming quer encontrar e se conectar a fontes de dados em tempo real disponíveis na organização, como Azure Event Hubs e Kafka. Onde deve procurar no Microsoft Fabric?",
+    "options": {
+      "A": "OneLake catalog",
+      "B": "Fabric Admin portal",
+      "C": "Real-Time hub",
+      "D": "Data Factory hub"
+    },
+    "correct_answer": "C",
+    "explanation": "O Real-Time hub no Microsoft Fabric é o centro de descoberta e gerenciamento de dados em streaming. Permite encontrar streams disponíveis na organização (Azure Event Hubs, Kafka, IoT Hub, Fabric Eventstreams) e conectar-se a eles diretamente.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/real-time-hub/real-time-hub-overview"
+  },
+  {
+    "id": "d2-1-8",
+    "domain": 2,
+    "subdomain": "2.1",
+    "topic": "Ingest or access data as needed",
+    "difficulty": "hard",
+    "question": "Um engenheiro precisa acessar dados de um Azure Data Lake Storage Gen2 de outra assinatura Azure, sem copiar os dados para o Lakehouse local. Qual recurso do Microsoft Fabric permite isso?",
+    "options": {
+      "A": "Data Pipeline com atividade Copy Data",
+      "B": "OneLake Shortcut",
+      "C": "Dataflow Gen2",
+      "D": "Mirroring"
+    },
+    "correct_answer": "B",
+    "explanation": "OneLake Shortcuts permitem criar ponteiros (atalhos) para dados externos como Azure Data Lake Storage Gen2, Amazon S3 e Google Cloud Storage, sem mover ou copiar os dados. O dado permanece na fonte original e é acessado virtualmente pelo Lakehouse, eliminando duplicação e custos de armazenamento.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/onelake/onelake-shortcuts"
+  },
+  {
+    "id": "d2-2-1",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Create views, functions, and stored procedures",
+    "difficulty": "easy",
+    "question": "Um engenheiro quer encapsular uma query SQL complexa no Warehouse do Fabric para que outros usuários possam consultá-la como se fosse uma tabela simples. Qual objeto SQL deve criar?",
+    "options": {
+      "A": "Stored procedure",
+      "B": "User-defined function (UDF)",
+      "C": "View",
+      "D": "External table"
+    },
+    "correct_answer": "C",
+    "explanation": "Uma View no SQL Warehouse encapsula uma query SELECT complexa e apresenta o resultado como uma tabela virtual. Os usuários podem consultar a view com SELECT simples sem conhecer a query subjacente. É a opção correta para expor dados transformados de forma transparente.",
+    "reference_url": "https://learn.microsoft.com/en-us/fabric/data-warehouse/tsql-surface-area"
+  },
+  {
+    "id": "d2-2-2",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Implement a star schema",
+    "difficulty": "medium",
+    "question": "Um engenheiro está modelando dados de vendas em um Lakehouse. Ele tem uma tabela central de fatos de transações e quer conectá-la a dimensões de produto, cliente e data. Qual padrão de modelagem deve aplicar?",
+    "options": {
+      "A": "Snowflake schema",
+      "B": "Star schema",
+      "C": "Flat table (wide table)",
+      "D": "Third normal form (3NF)"
+    },
+    "correct_answer": "B",
+    "explanation": "O Star schema coloca a tabela de fatos no centro conectada diretamente às tabelas de dimensão, formando uma estrela. É o padrão recomendado pelo Microsoft Fabric para modelos analíticos por otimizar performance de queries, simplificar a modelagem semântica e facilitar a criação de medidas DAX.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/guidance/star-schema"
+  },
+  {
+    "id": "d2-2-3",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Enrich data by adding new columns",
+    "difficulty": "easy",
+    "question": "Em um notebook Spark no Fabric, um engenheiro precisa adicionar uma coluna calculada 'ano_fiscal' a um DataFrame de vendas, baseada na coluna 'data_venda'. Qual abordagem PySpark deve usar?",
+    "options": {
+      "A": "df.filter('data_venda')",
+      "B": "df.withColumn('ano_fiscal', ...)",
+      "C": "df.groupBy('data_venda').agg(...)",
+      "D": "df.join(dim_data, 'data_venda')"
+    },
+    "correct_answer": "B",
+    "explanation": "O método withColumn() do PySpark adiciona ou substitui uma coluna em um DataFrame, retornando um novo DataFrame com a coluna adicionada. É a abordagem correta para enriquecer dados com colunas derivadas/calculadas como 'ano_fiscal'.",
+    "reference_url": "https://learn.microsoft.com/en-us/fabric/data-engineering/how-to-use-notebook"
+  },
+  {
+    "id": "d2-2-4",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Denormalize data",
+    "difficulty": "medium",
+    "question": "Um modelo em 3NF (terceira forma normal) tem tabelas de pedidos, itens de pedido e produtos separadas. Um engenheiro quer combinar essas tabelas em uma única wide table para melhorar a performance de queries analíticas. O que está fazendo?",
+    "options": {
+      "A": "Normalização",
+      "B": "Particionamento",
+      "C": "Denormalização",
+      "D": "Indexação"
+    },
+    "correct_answer": "C",
+    "explanation": "Denormalização é o processo de combinar tabelas normalizadas em estruturas mais planas (wide tables) para melhorar a performance de queries analíticas, reduzindo JOINs. É comum em data lakes e warehouses onde leitura é prioridade sobre escrita.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/guidance/star-schema#denormalization"
+  },
+  {
+    "id": "d2-2-5",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Aggregate data",
+    "difficulty": "easy",
+    "question": "Um engenheiro usa SQL no Warehouse do Fabric para calcular o total de vendas por categoria de produto. Qual cláusula SQL é essencial para esse cálculo?",
+    "options": {
+      "A": "ORDER BY",
+      "B": "WHERE",
+      "C": "GROUP BY",
+      "D": "HAVING"
+    },
+    "correct_answer": "C",
+    "explanation": "A cláusula GROUP BY agrupa linhas com os mesmos valores em colunas especificadas, permitindo aplicar funções de agregação (SUM, COUNT, AVG, etc.) a cada grupo. Para calcular vendas por categoria, o GROUP BY na coluna categoria é obrigatório.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/data-warehouse/query-warehouse"
+  },
+  {
+    "id": "d2-2-6",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Merge or join data",
+    "difficulty": "medium",
+    "question": "Um engenheiro precisa combinar dados de clientes de dois sistemas legados, incluindo todos os clientes de ambos os sistemas, mesmo que não existam no outro. Qual tipo de JOIN SQL deve usar?",
+    "options": {
+      "A": "INNER JOIN",
+      "B": "LEFT JOIN",
+      "C": "FULL OUTER JOIN",
+      "D": "CROSS JOIN"
+    },
+    "correct_answer": "C",
+    "explanation": "FULL OUTER JOIN retorna todas as linhas de ambas as tabelas, preenchendo com NULL onde não há correspondência. É o tipo correto quando se quer incluir todos os registros de ambas as fontes, independente de match. Para dados de clientes de dois sistemas sem perder nenhum, FULL OUTER JOIN é a escolha certa.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/data-warehouse/query-warehouse"
+  },
+  {
+    "id": "d2-2-7",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Identify and resolve duplicate data",
+    "difficulty": "medium",
+    "question": "Em um Dataflow Gen2, um engenheiro identifica linhas duplicadas em uma tabela de clientes baseadas no campo 'email'. Qual transformação Power Query deve aplicar para manter apenas a primeira ocorrência de cada email?",
+    "options": {
+      "A": "Remove Duplicates na coluna email",
+      "B": "Filter Rows por email",
+      "C": "Group By email com agregação Min",
+      "D": "Sort por email e Remove Rows"
+    },
+    "correct_answer": "A",
+    "explanation": "A transformação 'Remove Duplicates' no Power Query (Dataflow Gen2) remove linhas duplicadas baseadas nas colunas selecionadas, mantendo a primeira ocorrência. Aplicada na coluna 'email', garante unicidade de registros de clientes.",
+    "reference_url": "https://learn.microsoft.com/en-us/power-query/working-with-duplicates"
+  },
+  {
+    "id": "d2-2-8",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Identify and resolve missing data",
+    "difficulty": "easy",
+    "question": "Em um Dataflow Gen2, uma coluna 'receita' tem valores nulos que precisam ser substituídos por 0 para cálculos corretos. Qual transformação deve aplicar?",
+    "options": {
+      "A": "Remove Rows com erros",
+      "B": "Replace Values: substituir null por 0",
+      "C": "Filter Rows para excluir nulls",
+      "D": "Group By com agregação SUM"
+    },
+    "correct_answer": "B",
+    "explanation": "A transformação 'Replace Values' no Power Query permite substituir valores específicos (incluindo null) por outros valores. Substituir null por 0 na coluna 'receita' garante que cálculos como SUM e AVERAGE funcionem corretamente sem erros de null.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-query/replace-values"
+  },
+  {
+    "id": "d2-2-9",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Convert column data types",
+    "difficulty": "easy",
+    "question": "Em um Dataflow Gen2, uma coluna 'data_pedido' foi importada como texto (string) no formato 'DD/MM/AAAA'. Para usar essa coluna em filtros de data e cálculos de tempo, qual transformação deve aplicar?",
+    "options": {
+      "A": "Split Column por delimitador",
+      "B": "Change Type para Date",
+      "C": "Replace Values dos caracteres '/'",
+      "D": "Extract Text Before Delimiter"
+    },
+    "correct_answer": "B",
+    "explanation": "A transformação 'Change Type' no Power Query altera o tipo de dado de uma coluna. Converter a coluna de texto para tipo Date permite filtros por período, cálculos de diferença entre datas e uso em time intelligence no modelo semântico.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-query/data-types"
+  },
+  {
+    "id": "d2-2-10",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Filter data",
+    "difficulty": "easy",
+    "question": "Em um notebook Spark no Fabric, um engenheiro quer manter apenas os registros onde a coluna 'status' é igual a 'ativo' e a coluna 'valor' é maior que 1000. Qual método PySpark deve usar?",
+    "options": {
+      "A": "df.select('status', 'valor')",
+      "B": "df.where((df.status == 'ativo') & (df.valor > 1000))",
+      "C": "df.groupBy('status').agg(sum('valor'))",
+      "D": "df.orderBy('valor', ascending=False)"
+    },
+    "correct_answer": "B",
+    "explanation": "O método where() (ou filter()) do PySpark filtra linhas de um DataFrame baseado em uma condição. Usando operadores lógicos (&) para combinar múltiplas condições, retorna apenas os registros que atendem a ambos os critérios especificados.",
+    "reference_url": "https://learn.microsoft.com/en-us/fabric/data-engineering/how-to-use-notebook"
+  },
+  {
+    "id": "d2-2-11",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Create stored procedures",
+    "difficulty": "medium",
+    "question": "Um engenheiro precisa criar uma rotina no Warehouse do Fabric que carregue dados de uma tabela de staging para a tabela de fatos, com lógica de UPSERT. Qual objeto SQL é mais adequado para encapsular essa lógica reutilizável?",
+    "options": {
+      "A": "View",
+      "B": "User-defined function",
+      "C": "Stored procedure",
+      "D": "External table"
+    },
+    "correct_answer": "C",
+    "explanation": "Stored procedures encapsulam lógica SQL reutilizável que pode incluir INSERT, UPDATE, DELETE, controle de fluxo (IF/WHILE) e transações. São ideais para rotinas de carga de dados como UPSERT (MERGE). No Fabric Warehouse, podem ser chamadas por Data Pipelines para automação.",
+    "reference_url": "https://learn.microsoft.com/en-us/fabric/data-warehouse/tutorial-transform-data"
+  },
+  {
+    "id": "d2-2-12",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Implement a star schema for a warehouse",
+    "difficulty": "hard",
+    "question": "Em um Warehouse do Fabric, um engenheiro cria uma tabela de dimensão 'dim_cliente' com uma chave substituta (surrogate key) e uma tabela de fatos 'fact_vendas' que referencia essa chave. Qual é a principal vantagem de usar surrogate keys em vez das chaves naturais do sistema de origem?",
+    "options": {
+      "A": "Reduz o espaço de armazenamento necessário",
+      "B": "Facilita o tratamento de mudanças históricas (SCDs) e independe dos sistemas de origem",
+      "C": "Elimina a necessidade de índices na tabela de fatos",
+      "D": "Permite consultas SQL mais rápidas automaticamente"
+    },
+    "correct_answer": "B",
+    "explanation": "Surrogate keys são geradas internamente pelo data warehouse e são independentes dos sistemas de origem. Isso facilita: (1) rastrear mudanças históricas em dimensões (Slowly Changing Dimensions - SCDs), (2) consolidar dados de múltiplos sistemas com chaves naturais diferentes, e (3) proteger o warehouse de mudanças nos sistemas fonte.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/guidance/star-schema#surrogate-keys"
+  },
+  {
+    "id": "d2-3-1",
+    "domain": 2,
+    "subdomain": "2.3",
+    "topic": "Query data using SQL",
+    "difficulty": "easy",
+    "question": "Um analista quer calcular o rank de vendedores por receita total no Warehouse do Fabric, atribuindo o mesmo rank a vendedores com mesma receita. Qual função SQL deve usar?",
+    "options": {
+      "A": "ROW_NUMBER()",
+      "B": "RANK()",
+      "C": "DENSE_RANK()",
+      "D": "NTILE()"
+    },
+    "correct_answer": "C",
+    "explanation": "DENSE_RANK() atribui o mesmo rank para valores iguais, sem pular números na sequência. Por exemplo, se dois vendedores têm receita igual, ambos recebem rank 1 e o próximo recebe rank 2 (não 3). RANK() (B) também empata, mas pula o próximo número (seriam ranks 1, 1, 3).",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/data-warehouse/query-warehouse"
+  },
+  {
+    "id": "d2-3-2",
+    "domain": 2,
+    "subdomain": "2.3",
+    "topic": "Query data using KQL",
+    "difficulty": "medium",
+    "question": "Um analista precisa consultar eventos de log em um KQL Database do Eventhouse, filtrando apenas eventos dos últimos 24 horas com nível de severidade 'error'. Qual é a estrutura correta de uma query KQL?",
+    "options": {
+      "A": "SELECT * FROM logs WHERE timestamp > now()-24h AND severity = 'error'",
+      "B": "logs | where timestamp > ago(24h) and severity == 'error'",
+      "C": "logs.filter(timestamp > 24h, severity = 'error')",
+      "D": "GET logs WHERE time = last24h AND level = 'error'"
+    },
+    "correct_answer": "B",
+    "explanation": "KQL (Kusto Query Language) usa uma sintaxe baseada em pipe (|) onde os operadores filtram e transformam a tabela progressivamente. 'ago(24h)' retorna o timestamp de 24 horas atrás. '==' é o operador de igualdade em KQL. A sintaxe correta usa 'where' com os filtros separados por 'and'.",
+    "reference_url": "https://learn.microsoft.com/pt-br/azure/data-explorer/kusto/query/"
+  },
+  {
+    "id": "d2-3-3",
+    "domain": 2,
+    "subdomain": "2.3",
+    "topic": "Query data using DAX",
+    "difficulty": "medium",
+    "question": "Em um modelo semântico no Microsoft Fabric, um analista quer criar uma medida que calcule o total de vendas apenas para produtos da categoria 'Eletrônicos'. Qual função DAX deve usar para aplicar esse filtro?",
+    "options": {
+      "A": "SUMX()",
+      "B": "CALCULATE() com FILTER()",
+      "C": "SUM() com WHERE",
+      "D": "TOTALYTD()"
+    },
+    "correct_answer": "B",
+    "explanation": "CALCULATE() modifica o contexto de filtro de uma expressão DAX. Combinado com FILTER() ou expressões de filtro diretas, permite aplicar filtros específicos como 'apenas produtos de Eletrônicos'. Exemplo: CALCULATE(SUM(Vendas[Valor]), Produtos[Categoria] = 'Eletrônicos').",
+    "reference_url": "https://learn.microsoft.com/pt-br/dax/calculate-function-dax"
+  },
+  {
+    "id": "d2-3-4",
+    "domain": 2,
+    "subdomain": "2.3",
+    "topic": "Query data using Visual Query Editor",
+    "difficulty": "easy",
+    "question": "Um analista sem conhecimento de SQL precisa criar uma query para agregar dados de vendas por mês no Warehouse do Fabric. Qual ferramenta no Microsoft Fabric permite criar queries visualmente, arrastando e soltando tabelas?",
+    "options": {
+      "A": "DAX Studio",
+      "B": "SQL Query Editor",
+      "C": "Visual Query Editor",
+      "D": "Power Query Editor"
+    },
+    "correct_answer": "C",
+    "explanation": "O Visual Query Editor no Microsoft Fabric Warehouse permite criar queries sem escrever SQL, usando uma interface gráfica para selecionar tabelas, definir JOINs, filtros e agregações visualmente. É ideal para analistas que preferem uma abordagem no-code/low-code.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/data-warehouse/visual-query-editor"
+  },
+  {
+    "id": "d2-3-5",
+    "domain": 2,
+    "subdomain": "2.3",
+    "topic": "Query data using KQL",
+    "difficulty": "hard",
+    "question": "Uma analista precisa calcular a média móvel de 7 dias de métricas de performance em um KQL Database. Qual função KQL permite calcular esse tipo de agregação em janelas de tempo deslizantes?",
+    "options": {
+      "A": "summarize avg() by bin()",
+      "B": "series_fir() com sliding_window_stats()",
+      "C": "mv-expand com extend",
+      "D": "make-series com series_stats()"
+    },
+    "correct_answer": "B",
+    "explanation": "A função series_fir() em KQL aplica um filtro FIR (Finite Impulse Response) a uma série temporal, que pode ser usada para calcular médias móveis. Combinada com sliding_window_stats(), permite análises de janela deslizante. make-series primeiro cria a série temporal e series_fir calcula a média móvel.",
+    "reference_url": "https://learn.microsoft.com/pt-br/azure/data-explorer/kusto/query/series-fir-function"
+  },
+  {
+    "id": "d2-3-6",
+    "domain": 2,
+    "subdomain": "2.3",
+    "topic": "Query data using DAX",
+    "difficulty": "hard",
+    "question": "Um analista precisa criar uma medida DAX que retorne as vendas do mesmo período do ano anterior, levando em conta o contexto de filtro atual (mês, trimestre e ano selecionados no relatório). Qual função DAX é mais adequada?",
+    "options": {
+      "A": "PREVIOUSYEAR()",
+      "B": "DATEADD()",
+      "C": "SAMEPERIODLASTYEAR()",
+      "D": "PARALLELPERIOD()"
+    },
+    "correct_answer": "C",
+    "explanation": "SAMEPERIODLASTYEAR() retorna uma tabela de datas correspondentes ao mesmo período do ano anterior com base no contexto de filtro atual. É a função time intelligence mais direta para comparações ano-a-ano, respeitando qualquer granularidade (dia, mês, trimestre) selecionada no relatório.",
+    "reference_url": "https://learn.microsoft.com/pt-br/dax/sameperiodlastyear-function-dax"
+  },
+  {
+    "id": "d2-3-7",
+    "domain": 2,
+    "subdomain": "2.3",
+    "topic": "Select and aggregate data using SQL",
+    "difficulty": "medium",
+    "question": "Um analista precisa encontrar todos os clientes que fizeram mais de 5 pedidos em 2024, usando SQL no Warehouse do Fabric. Qual cláusula SQL filtra grupos após o GROUP BY?",
+    "options": {
+      "A": "WHERE COUNT(pedido_id) > 5",
+      "B": "FILTER COUNT(pedido_id) > 5",
+      "C": "HAVING COUNT(pedido_id) > 5",
+      "D": "AND COUNT(pedido_id) > 5"
+    },
+    "correct_answer": "C",
+    "explanation": "A cláusula HAVING filtra resultados após a agregação (GROUP BY), enquanto WHERE filtra antes da agregação. Para filtrar grupos com base em funções de agregação como COUNT, AVG, SUM, é necessário usar HAVING. WHERE não pode referenciar funções de agregação diretamente.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/data-warehouse/query-warehouse"
+  },
+  {
+    "id": "d2-3-8",
+    "domain": 2,
+    "subdomain": "2.3",
+    "topic": "Query data using KQL",
+    "difficulty": "medium",
+    "question": "Em um KQL Database do Eventhouse, um engenheiro quer criar uma query que agregue eventos de log por hora e exporte o resultado para uma tabela do Lakehouse. Qual recurso KQL permite isso?",
+    "options": {
+      "A": "Materialized views KQL",
+      "B": "KQL Queryset exportado manualmente",
+      "C": "Continuous export para OneLake",
+      "D": "Scheduled queries no Eventhouse"
+    },
+    "correct_answer": "C",
+    "explanation": "O Continuous export (Exportação Contínua) no Eventhouse permite exportar automaticamente e continuamente os resultados de uma query KQL para o OneLake (como arquivos Delta/Parquet), onde ficam disponíveis para o Lakehouse e outros itens do Fabric. É ideal para materializar agregações periódicas de dados de streaming.",
+    "reference_url": "https://learn.microsoft.com/en-us/fabric/real-time-intelligence/data-activator/activator-get-data-eventstreams"
+  },
+  {
+    "id": "d3-1-1",
+    "domain": 3,
+    "subdomain": "3.1",
+    "topic": "Choose a storage mode",
+    "difficulty": "medium",
+    "question": "Um modelo semântico no Microsoft Fabric precisa consultar dados atualizados em tempo real de um Lakehouse sem importar os dados para o modelo. Qual storage mode deve ser escolhido?",
+    "options": {
+      "A": "Import",
+      "B": "DirectQuery",
+      "C": "Direct Lake",
+      "D": "Dual"
+    },
+    "correct_answer": "C",
+    "explanation": "Direct Lake é o storage mode exclusivo do Microsoft Fabric que acessa arquivos Delta diretamente do OneLake (Lakehouse/Warehouse) sem importar dados nem usar DirectQuery. Combina a performance da importação (colunar, in-memory) com dados sempre atualizados do OneLake, eliminando o trade-off entre performance e atualização.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/get-started/direct-lake-overview"
+  },
+  {
+    "id": "d3-1-2",
+    "domain": 3,
+    "subdomain": "3.1",
+    "topic": "Implement a star schema for a semantic model",
+    "difficulty": "medium",
+    "question": "Ao construir um modelo semântico no Microsoft Fabric, um engenheiro conecta uma tabela de fatos de vendas às dimensões de produto, cliente, data e loja com relacionamentos 1-N. Qual benefício direto esse star schema traz para medidas DAX?",
+    "options": {
+      "A": "Elimina a necessidade de usar CALCULATE()",
+      "B": "Permite usar RELATED() para acessar colunas de dimensão no contexto de linha das tabelas de fatos",
+      "C": "Elimina a necessidade de uma tabela de datas separada",
+      "D": "Habilita o modo Direct Lake automaticamente"
+    },
+    "correct_answer": "B",
+    "explanation": "Em um star schema com relacionamentos adequados, a função RELATED() permite acessar colunas de tabelas de dimensão a partir do contexto de linha de uma tabela de fatos. Isso é fundamental para criar colunas calculadas e medidas que combinam dados de múltiplas tabelas sem JOINs explícitos.",
+    "reference_url": "https://learn.microsoft.com/pt-br/dax/related-function-dax"
+  },
+  {
+    "id": "d3-1-3",
+    "domain": 3,
+    "subdomain": "3.1",
+    "topic": "Implement relationships - bridge tables",
+    "difficulty": "hard",
+    "question": "Um modelo semântico tem uma relação muitos-para-muitos entre produtos e campanhas de marketing (um produto pode estar em várias campanhas e uma campanha pode incluir vários produtos). Como implementar corretamente esse relacionamento no Microsoft Fabric?",
+    "options": {
+      "A": "Criar um relacionamento direto M:N entre as tabelas com Cross Filter Both",
+      "B": "Criar uma tabela de bridge (junção) entre produtos e campanhas e dois relacionamentos 1:N",
+      "C": "Usar CROSSFILTER() em todas as medidas DAX",
+      "D": "Duplicar os produtos em cada campanha para evitar o M:N"
+    },
+    "correct_answer": "B",
+    "explanation": "A abordagem recomendada para relações M:N no Power BI/Fabric é usar uma tabela de bridge (tabela de junção) que contém pares produto-campanha. Dois relacionamentos 1:N (produto→bridge e campanha→bridge) resolvem o problema de forma performática e previsível, evitando os problemas de filtros ambíguos do relacionamento M:N direto.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/guidance/relationships-many-to-many"
+  },
+  {
+    "id": "d3-1-4",
+    "domain": 3,
+    "subdomain": "3.1",
+    "topic": "Write calculations using DAX variables",
+    "difficulty": "medium",
+    "question": "Uma medida DAX calcula a mesma sub-expressão de vendas múltiplas vezes dentro da fórmula, causando lentidão. Qual recurso DAX melhora a performance e legibilidade ao armazenar o resultado de uma sub-expressão para reutilização?",
+    "options": {
+      "A": "Funções CALCULATE() aninhadas",
+      "B": "Variáveis DAX com VAR...RETURN",
+      "C": "Parâmetros de campo (field parameters)",
+      "D": "Grupos de cálculo (calculation groups)"
+    },
+    "correct_answer": "B",
+    "explanation": "Variáveis DAX (VAR...RETURN) permitem armazenar o resultado de uma expressão e reutilizá-la múltiplas vezes na mesma fórmula. Isso melhora performance (a expressão é calculada uma única vez) e legibilidade. Exemplo: VAR totalVendas = SUM(Vendas[Valor]) RETURN DIVIDE(totalVendas, target).",
+    "reference_url": "https://learn.microsoft.com/pt-br/dax/var-dax"
+  },
+  {
+    "id": "d3-1-5",
+    "domain": 3,
+    "subdomain": "3.1",
+    "topic": "Write calculations using iterator functions",
+    "difficulty": "medium",
+    "question": "Um modelo de vendas precisa calcular o valor médio de margem de lucro linha a linha (não a média de uma coluna, mas a média das margens de cada transação). Qual função DAX resolve esse cálculo iterativo?",
+    "options": {
+      "A": "AVERAGE(Vendas[Margem])",
+      "B": "AVERAGEX(Vendas, Vendas[Receita] - Vendas[Custo])",
+      "C": "CALCULATE(AVERAGE(Vendas[Margem]))",
+      "D": "SUMX(Vendas, Vendas[Margem]) / COUNT(Vendas[ID])"
+    },
+    "correct_answer": "B",
+    "explanation": "AVERAGEX() é uma função iteradora que itera linha a linha sobre uma tabela, avalia a expressão em cada linha (neste caso, Receita - Custo) e calcula a média dos resultados. Diferente de AVERAGE() que só pode referenciar colunas existentes, AVERAGEX() permite calcular sobre expressões derivadas por linha.",
+    "reference_url": "https://learn.microsoft.com/pt-br/dax/averagex-function-dax"
+  },
+  {
+    "id": "d3-1-6",
+    "domain": 3,
+    "subdomain": "3.1",
+    "topic": "Implement calculation groups",
+    "difficulty": "hard",
+    "question": "Um modelo semântico tem 20 medidas de vendas, lucro e margem, e a empresa quer que todas suportem comparações de período (YTD, MoM, YoY). Em vez de criar variações de cada medida, qual recurso DAX permite criar a lógica de inteligência de tempo uma única vez?",
+    "options": {
+      "A": "Parâmetros de campo (field parameters)",
+      "B": "Grupos de cálculo (calculation groups)",
+      "C": "Tabela de datas calculada",
+      "D": "Medidas implícitas"
+    },
+    "correct_answer": "B",
+    "explanation": "Calculation groups permitem criar itens de cálculo (como YTD, MoM, YoY) que se aplicam dinamicamente a qualquer medida do modelo. Em vez de criar 3 variações × 20 medidas = 60 medidas, cria-se 3 itens de cálculo que funcionam com todas as 20 medidas automaticamente, reduzindo drasticamente a manutenção.",
+    "reference_url": "https://learn.microsoft.com/pt-br/analysis-services/tabular-models/calculation-groups"
+  },
+  {
+    "id": "d3-1-7",
+    "domain": 3,
+    "subdomain": "3.1",
+    "topic": "Design and build composite models",
+    "difficulty": "hard",
+    "question": "Um modelo semântico usa Import mode para tabelas de dimensão (que raramente mudam) e precisa combinar com dados de vendas em tempo real do Lakehouse. Qual arquitetura de modelo semântico permite essa combinação de storage modes?",
+    "options": {
+      "A": "Criar dois modelos semânticos separados e combinar no relatório",
+      "B": "Usar apenas DirectQuery para todos os itens",
+      "C": "Composite model com tabelas Import e Direct Lake no mesmo modelo",
+      "D": "Converter todas as tabelas para modo Dual"
+    },
+    "correct_answer": "C",
+    "explanation": "Composite models permitem combinar diferentes storage modes no mesmo modelo semântico: Import (para dimensões estáticas e alta performance), Direct Lake (para fatos em tempo real do Lakehouse) e DirectQuery (para fontes externas). Isso permite otimizar cada tabela individualmente.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/transform-model/desktop-composite-models"
+  },
+  {
+    "id": "d3-1-8",
+    "domain": 3,
+    "subdomain": "3.1",
+    "topic": "Implement field parameters",
+    "difficulty": "medium",
+    "question": "Um usuário de negócio quer poder alternar dinamicamente entre visualizar dados por Produto, Região ou Canal de Vendas em um relatório do Power BI, usando um slicer. Qual recurso do modelo semântico habilita essa funcionalidade?",
+    "options": {
+      "A": "Grupos de cálculo (calculation groups)",
+      "B": "Parâmetros de campo (field parameters)",
+      "C": "Medidas dinâmicas com SELECTEDVALUE()",
+      "D": "RLS dinâmico"
+    },
+    "correct_answer": "B",
+    "explanation": "Field parameters permitem que usuários finais alternem dinamicamente quais campos (colunas ou medidas) são usados em visuais do relatório através de um slicer. O relatório usa o parâmetro como eixo ou legenda, e o slicer de field parameter controla qual dimensão é exibida.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/create-reports/power-bi-field-parameters"
+  },
+  {
+    "id": "d3-1-9",
+    "domain": 3,
+    "subdomain": "3.1",
+    "topic": "Configure large semantic model storage format",
+    "difficulty": "hard",
+    "question": "Um modelo semântico no Microsoft Fabric tem 50 GB de dados importados e está causando erros de memória ao ser atualizado. Qual configuração deve ser habilitada para suportar modelos dessa escala?",
+    "options": {
+      "A": "Habilitar DirectQuery mode para todas as tabelas",
+      "B": "Habilitar Large semantic model storage format",
+      "C": "Dividir o modelo em múltiplos modelos menores",
+      "D": "Reduzir a granularidade dos dados"
+    },
+    "correct_answer": "B",
+    "explanation": "O Large semantic model storage format usa a arquitetura Premium File Format (PFF) que supera o limite de 10 GB do formato padrão e permite modelos de até centenas de GBs. Ele usa streaming de dados para reduzir o pico de uso de memória durante a atualização e suporta consultas enquanto o modelo está sendo atualizado.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/enterprise/service-premium-large-models"
+  },
+  {
+    "id": "d3-2-1",
+    "domain": 3,
+    "subdomain": "3.2",
+    "topic": "Implement performance improvements in queries",
+    "difficulty": "medium",
+    "question": "Um relatório com visuals complexos está demorando 15 segundos para carregar. Um engenheiro usa o Performance Analyzer no Power BI Desktop e identifica que uma medida DAX específica está consumindo 12 segundos. Qual ferramenta deve usar para analisar e otimizar o plano de execução dessa medida?",
+    "options": {
+      "A": "Power Query Editor",
+      "B": "DAX Studio com Server Timings",
+      "C": "SQL Server Profiler",
+      "D": "Azure Monitor"
+    },
+    "correct_answer": "B",
+    "explanation": "DAX Studio com o recurso Server Timings permite capturar e analisar o plano de execução de medidas DAX, mostrando tempo gasto em cada operação (Storage Engine vs. Formula Engine), consultas geradas e chamadas ao cache. É a ferramenta padrão para diagnosticar e otimizar performance de medidas DAX.",
+    "reference_url": "https://learn.microsoft.com/pt-br/dax/best-practices/dax-variables"
+  },
+  {
+    "id": "d3-2-2",
+    "domain": 3,
+    "subdomain": "3.2",
+    "topic": "Improve DAX performance",
+    "difficulty": "medium",
+    "question": "Uma medida DAX usa FILTER(ALL(Vendas), Vendas[Data] = MAX(Vendas[Data])) e está lenta. Qual refatoração melhora a performance substituindo a iteração desnecessária sobre toda a tabela?",
+    "options": {
+      "A": "Substituir por CALCULATE com FILTER usando ALLSELECTED",
+      "B": "Substituir FILTER(ALL(Vendas), ...) por CALCULATE(..., Vendas[Data] = MAX(Vendas[Data]))",
+      "C": "Adicionar uma variável VAR para cachear o MAX()",
+      "D": "Usar SUMX em vez de CALCULATE"
+    },
+    "correct_answer": "B",
+    "explanation": "FILTER(ALL(Tabela)) itera linha a linha sobre toda a tabela, o que é ineficiente para filtros em colunas. CALCULATE com filtros booleanos (Vendas[Data] = MAX(Vendas[Data])) usa o Storage Engine otimizado, que é muito mais eficiente. É uma das otimizações DAX mais impactantes: evitar FILTER(ALL()) e usar predicados diretos no CALCULATE.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/guidance/dax-avoid-avoid-filter-as-filter-argument"
+  },
+  {
+    "id": "d3-2-3",
+    "domain": 3,
+    "subdomain": "3.2",
+    "topic": "Configure Direct Lake",
+    "difficulty": "hard",
+    "question": "Um modelo semântico em Direct Lake mode está fazendo fallback para DirectQuery com frequência, degradando a performance. Um engenheiro descobre que a tabela de fatos tem 500 colunas. Qual é a causa mais provável do fallback e como resolver?",
+    "options": {
+      "A": "O OneLake está temporariamente indisponível — esperar a recuperação",
+      "B": "O número de colunas excede o limite do Direct Lake — reduzir colunas ou usar uma view SQL",
+      "C": "O modelo precisa ser atualizado manualmente para habilitar Direct Lake",
+      "D": "O workspace não tem capacidade Fabric suficiente"
+    },
+    "correct_answer": "B",
+    "explanation": "Direct Lake tem limites por tamanho de capacidade Fabric, incluindo número máximo de colunas por tabela. Quando esses limites são excedidos, o modo faz fallback automático para DirectQuery. A solução é reduzir o número de colunas na tabela (removendo desnecessárias) ou criar uma view SQL no Lakehouse que selecione apenas as colunas necessárias.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/get-started/direct-lake-overview#direct-lake-fallback"
+  },
+  {
+    "id": "d3-2-4",
+    "domain": 3,
+    "subdomain": "3.2",
+    "topic": "Direct Lake on OneLake vs SQL endpoints",
+    "difficulty": "hard",
+    "question": "Um modelo semântico usa Direct Lake. Um engenheiro precisa decidir entre conectar ao OneLake diretamente ou ao SQL Analytics Endpoint do Lakehouse. Qual cenário justifica usar o SQL Analytics Endpoint em vez do OneLake direto?",
+    "options": {
+      "A": "Quando se quer a melhor performance possível de consulta",
+      "B": "Quando é necessário aplicar views SQL ou RLS definidos no Lakehouse",
+      "C": "Quando o modelo tem menos de 1 GB de dados",
+      "D": "Quando o workspace está em modo de desenvolvimento"
+    },
+    "correct_answer": "B",
+    "explanation": "Conectar ao SQL Analytics Endpoint permite que o modelo semântico aproveite views SQL e RLS configurados no nível do Warehouse/Lakehouse. O Direct Lake no OneLake acessa os arquivos Delta diretamente com máxima performance, mas sem poder usar views ou lógica SQL definida no endpoint. O endpoint é escolhido quando lógica SQL centralizada é necessária.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/get-started/direct-lake-overview"
+  },
+  {
+    "id": "d3-2-5",
+    "domain": 3,
+    "subdomain": "3.2",
+    "topic": "Implement incremental refresh",
+    "difficulty": "medium",
+    "question": "Um modelo semântico tem 5 anos de dados históricos de transações (150 GB). A atualização diária completa leva 4 horas. Como reduzir o tempo de atualização para apenas os dados novos?",
+    "options": {
+      "A": "Dividir o modelo em múltiplos modelos por ano",
+      "B": "Configurar incremental refresh com partições de data",
+      "C": "Usar Direct Lake em vez de Import",
+      "D": "Aumentar a capacidade do workspace"
+    },
+    "correct_answer": "B",
+    "explanation": "Incremental refresh cria partições de data na tabela de fatos e atualiza apenas a partição mais recente (ex: últimos 7 dias) em cada ciclo, mantendo os dados históricos em cache. Isso reduz o tempo de atualização de horas para minutos, enquanto preserva anos de histórico no modelo.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/connect-data/incremental-refresh-overview"
+  },
+  {
+    "id": "d3-2-6",
+    "domain": 3,
+    "subdomain": "3.2",
+    "topic": "Implement performance improvements in report visuals",
+    "difficulty": "medium",
+    "question": "Um painel do Power BI tem 15 visuais em uma única página, causando carregamento lento. Além de otimizar as medidas DAX, qual estratégia de design de relatório reduz o número de consultas ao modelo semântico?",
+    "options": {
+      "A": "Aumentar o tamanho da fonte dos visuais",
+      "B": "Reduzir o número de visuais ou usar páginas de drill-through para detalhes",
+      "C": "Adicionar mais slicers para filtrar os dados",
+      "D": "Usar Direct Lake em vez de Import"
+    },
+    "correct_answer": "B",
+    "explanation": "Cada visual em uma página do Power BI gera uma ou mais consultas DAX ao modelo semântico. Reduzir o número de visuais por página ou mover detalhes para páginas de drill-through reduz a carga de consultas simultâneas, melhorando o tempo de carregamento. Drill-through carrega o detalhe apenas quando solicitado.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/guidance/report-performance-troubleshoot"
+  },
+  {
+    "id": "d3-2-7",
+    "domain": 3,
+    "subdomain": "3.2",
+    "topic": "Incremental refresh behavior",
+    "difficulty": "hard",
+    "question": "Um modelo com incremental refresh configurado precisa garantir que transações de vendas que chegam atrasadas (até 3 dias após a data da transação) sejam sempre capturadas corretamente na atualização. Qual configuração do incremental refresh resolve isso?",
+    "options": {
+      "A": "Aumentar o período de armazenamento histórico para 10 anos",
+      "B": "Habilitar 'Detect data changes' com uma coluna de timestamp de carga",
+      "C": "Configurar o período de atualização incremental para incluir os últimos 5 dias (janela de chegada tardia)",
+      "D": "Desabilitar o incremental refresh e fazer full refresh diário"
+    },
+    "correct_answer": "C",
+    "explanation": "A configuração de 'período de atualização' no incremental refresh define quantos dias recentes serão atualizados em cada ciclo. Configurar o período de atualização para 5 dias (em vez de 1 dia) cria uma janela de chegada tardia que captura transações retroativas de até 5 dias, garantindo que dados que chegam com atraso sejam incluídos nas atualizações seguintes.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/connect-data/incremental-refresh-configure"
+  },
+  {
+    "id": "d1-1-9",
+    "domain": 1,
+    "subdomain": "1.1",
+    "topic": "Implement row-level security",
+    "difficulty": "hard",
+    "question": "Um engenheiro precisa implementar RLS dinâmico em um modelo semântico para que cada usuário veja apenas seus próprios dados de vendas, sem criar uma função por usuário. Qual função DAX deve usar no filtro da role de segurança?",
+    "options": {
+      "A": "USERNAME()",
+      "B": "USERPRINCIPALNAME()",
+      "C": "CURRENTUSER()",
+      "D": "LOOKUPVALUE()"
+    },
+    "correct_answer": "B",
+    "explanation": "USERPRINCIPALNAME() retorna o email do usuário autenticado (ex: joao@empresa.com) no contexto do serviço Power BI/Fabric. É a função recomendada para RLS dinâmico porque o email do UPN corresponde à identidade do Azure Active Directory. USERNAME() retorna domínio\\usuário, adequado para ambientes on-premises.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/security/service-admin-row-level-security"
+  },
+  {
+    "id": "d1-1-10",
+    "domain": 1,
+    "subdomain": "1.1",
+    "topic": "Apply sensitivity labels",
+    "difficulty": "medium",
+    "question": "Um relatório do Power BI conectado a um dataset com sensitivity label 'Confidencial' é publicado no workspace. O que acontece automaticamente com o label do relatório?",
+    "options": {
+      "A": "O relatório não herda o label — precisa ser aplicado manualmente",
+      "B": "O relatório herda automaticamente o label 'Confidencial' do dataset",
+      "C": "O relatório recebe o label padrão do workspace",
+      "D": "O relatório fica sem label até ser revisado pelo administrador"
+    },
+    "correct_answer": "B",
+    "explanation": "O Microsoft Fabric implementa herança automática de sensitivity labels: quando um item downstream (como um relatório) é criado ou atualizado a partir de uma fonte com label mais restritivo, o label é herdado automaticamente. Isso garante que a classificação de confidencialidade se propague por toda a cadeia de dados.",
+    "reference_url": "https://learn.microsoft.com/en-us/fabric/governance/information-protection"
+  },
+  {
+    "id": "d1-1-11",
+    "domain": 1,
+    "subdomain": "1.1",
+    "topic": "Implement workspace-level access controls",
+    "difficulty": "easy",
+    "question": "Um usuário precisa poder editar relatórios e datasets em um workspace do Fabric, além de poder compartilhar conteúdo com outros usuários. Qual função deve receber?",
+    "options": {
+      "A": "Viewer",
+      "B": "Contributor",
+      "C": "Member",
+      "D": "Admin"
+    },
+    "correct_answer": "C",
+    "explanation": "A função Member permite editar, publicar e compartilhar itens no workspace, incluindo relatórios e datasets. A função Contributor permite criar e editar itens, mas não pode compartilhá-los ou publicar Apps. Member é a função adequada para usuários que precisam de capacidade de compartilhamento.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/get-started/roles-workspaces"
+  },
+  {
+    "id": "d1-1-12",
+    "domain": 1,
+    "subdomain": "1.1",
+    "topic": "Implement object-level security",
+    "difficulty": "hard",
+    "question": "Um modelo semântico tem uma tabela 'DadosSalario' que deve ser completamente oculta de todos os usuários exceto o time de RH. Ao configurar OLS para ocultar essa tabela, o que acontece quando um usuário não autorizado tenta acessá-la via DAX ou relatório?",
+    "options": {
+      "A": "A tabela aparece vazia (sem linhas)",
+      "B": "O usuário recebe um erro de permissão indicando que a tabela não existe",
+      "C": "A tabela retorna apenas as colunas permitidas",
+      "D": "O usuário é redirecionado para a página de acesso negado"
+    },
+    "correct_answer": "B",
+    "explanation": "Com OLS configurado para ocultar uma tabela, usuários não autorizados recebem um erro indicando que o objeto não existe (equivalente a 'table not found'). Isso garante que nem mesmo a existência da tabela seja revelada, diferente do RLS que oculta apenas os dados mas mantém a estrutura visível.",
+    "reference_url": "https://learn.microsoft.com/pt-br/analysis-services/tabular-models/object-level-security"
+  },
+  {
+    "id": "d1-2-9",
+    "domain": 1,
+    "subdomain": "1.2",
+    "topic": "Configure version control for a workspace",
+    "difficulty": "medium",
+    "question": "Um time usa Git integration no Microsoft Fabric com Azure DevOps. Um desenvolvedor faz alterações em um notebook no workspace e quer salvar essas mudanças no repositório Git. Qual ação deve executar no portal do Fabric?",
+    "options": {
+      "A": "Exportar o notebook como arquivo .ipynb e fazer upload manual no Azure DevOps",
+      "B": "Usar a opção 'Commit' no painel de Source Control do workspace",
+      "C": "Criar um Pull Request diretamente do workspace",
+      "D": "Sincronizar o workspace com o botão 'Sync from Git'"
+    },
+    "correct_answer": "B",
+    "explanation": "No Microsoft Fabric com Git integration ativa, o painel de Source Control mostra as alterações pendentes (uncommitted changes). O botão 'Commit' salva as alterações do workspace para o branch conectado no repositório Git. 'Sync from Git' faz o oposto: traz mudanças do Git para o workspace.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/cicd/git-integration/intro-to-git-integration"
+  },
+  {
+    "id": "d1-2-10",
+    "domain": 1,
+    "subdomain": "1.2",
+    "topic": "Deploy semantic models via XMLA endpoint",
+    "difficulty": "hard",
+    "question": "Um engenheiro usa o Tabular Editor via XMLA endpoint para fazer deploy de um modelo semântico no Microsoft Fabric. Qual permissão mínima ele precisa no workspace de destino?",
+    "options": {
+      "A": "Viewer",
+      "B": "Contributor",
+      "C": "Member",
+      "D": "Admin"
+    },
+    "correct_answer": "C",
+    "explanation": "Para fazer deploy e modificar modelos semânticos via XMLA endpoint (operações de escrita), o usuário precisa no mínimo da função Member no workspace. A função Contributor não tem permissão para operações de escrita via XMLA. Admin e Member têm acesso de leitura e escrita via XMLA.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/enterprise/service-premium-connect-tools"
+  },
+  {
+    "id": "d1-2-11",
+    "domain": 1,
+    "subdomain": "1.2",
+    "topic": "Create and manage a Power BI Desktop project (.pbip)",
+    "difficulty": "medium",
+    "question": "Um desenvolvedor migra seus arquivos .pbix para o formato .pbip para usar com Git. Qual é uma diferença fundamental entre esses dois formatos?",
+    "options": {
+      "A": ".pbip não suporta DirectQuery, apenas Import mode",
+      "B": ".pbip armazena o modelo e o relatório como arquivos de texto separados, permitindo diffs no Git",
+      "C": ".pbip comprime os dados mais eficientemente que o .pbix",
+      "D": ".pbip requer o Power BI Premium para ser aberto no Desktop"
+    },
+    "correct_answer": "B",
+    "explanation": "O formato .pbip (Power BI Desktop Project) separa o relatório em arquivos de texto legíveis (JSON/TMDL para o modelo, JSON para o layout do relatório). Isso permite comparar diferenças (diff) entre versões no Git, fazer merge de alterações e revisar mudanças em code review — recursos impossíveis com o formato binário .pbix.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/developer/projects/projects-overview"
+  },
+  {
+    "id": "d1-2-12",
+    "domain": 1,
+    "subdomain": "1.2",
+    "topic": "Create and configure deployment pipelines",
+    "difficulty": "medium",
+    "question": "Em um deployment pipeline do Fabric com 3 estágios (Dev, QA, Prod), quem pode autorizar a promoção de itens do estágio QA para Prod?",
+    "options": {
+      "A": "Qualquer usuário com acesso ao workspace de QA",
+      "B": "Apenas o Fabric Administrator global da organização",
+      "C": "Usuários com permissão de deployment no pipeline (Admin ou permissão de deploy no estágio de destino)",
+      "D": "Apenas o criador original do pipeline"
+    },
+    "correct_answer": "C",
+    "explanation": "Os deployment pipelines têm controle granular de acesso por estágio. Um usuário pode ter permissão para fazer deploy para QA mas não para Prod. Apenas usuários com a permissão adequada no estágio de destino (ou administradores do pipeline) podem autorizar promoções entre estágios, garantindo governança no processo de release.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/cicd/deployment-pipelines/intro-to-deployment-pipelines"
+  },
+  {
+    "id": "d1-2-13",
+    "domain": 1,
+    "subdomain": "1.2",
+    "topic": "Perform impact analysis",
+    "difficulty": "hard",
+    "question": "Um engenheiro vai renomear uma coluna em um Lakehouse que é usada como fonte de dados para 3 dataflows, 2 modelos semânticos e 5 relatórios. Qual sequência correta para minimizar impactos?",
+    "options": {
+      "A": "Renomear a coluna no Lakehouse e depois corrigir os erros conforme aparecem",
+      "B": "Usar o Impact Analysis para mapear dependências, depois renomear a coluna e atualizar os itens downstream em ordem (Dataflows → Modelos → Relatórios)",
+      "C": "Criar uma nova coluna com o nome novo, migrar os itens downstream e depois remover a coluna antiga",
+      "D": "Notificar todos os donos dos relatórios e deixar que cada um corrija manualmente"
+    },
+    "correct_answer": "B",
+    "explanation": "A abordagem correta é: (1) usar Impact Analysis para identificar todos os itens afetados; (2) planejar a atualização em ordem de dependência (fontes primeiro, consumidores depois); (3) renomear a coluna e atualizar dataflows, depois modelos semânticos, depois relatórios. Isso minimiza o tempo em que os itens ficam quebrados.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/collaborate-share/service-dataset-impact-analysis"
+  },
+  {
+    "id": "d2-1-9",
+    "domain": 2,
+    "subdomain": "2.1",
+    "topic": "Ingest or access data as needed",
+    "difficulty": "medium",
+    "question": "Uma empresa quer replicar dados de um banco de dados SQL Server do Azure para o Microsoft Fabric em tempo quase real, sem escrever pipelines de ETL complexos. Qual recurso do Fabric é mais adequado para isso?",
+    "options": {
+      "A": "Dataflow Gen2 com atualização agendada a cada 15 minutos",
+      "B": "Data Pipeline com atividade Copy Data em modo de recorrência",
+      "C": "Mirroring do Azure SQL Database",
+      "D": "OneLake Shortcut apontando para o SQL Server"
+    },
+    "correct_answer": "C",
+    "explanation": "O Mirroring no Microsoft Fabric replica continuamente dados de fontes como Azure SQL Database, Azure Cosmos DB e Snowflake para o OneLake usando Change Data Capture (CDC). É a forma mais simples de ter dados quase em tempo real no Fabric sem construir pipelines ETL, com latência de segundos a minutos.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/database/mirrored-database/overview"
+  },
+  {
+    "id": "d2-1-10",
+    "domain": 2,
+    "subdomain": "2.1",
+    "topic": "Choose between different data stores",
+    "difficulty": "hard",
+    "question": "Uma solução precisa capturar eventos de telemetria de dispositivos IoT em alta velocidade (milhões de eventos por hora), armazená-los e permitir consultas de séries temporais com agregações em janelas de tempo. Qual data store do Microsoft Fabric é mais adequado?",
+    "options": {
+      "A": "Lakehouse com tabelas Delta",
+      "B": "Warehouse SQL",
+      "C": "Eventhouse (KQL Database)",
+      "D": "Dataflow Gen2"
+    },
+    "correct_answer": "C",
+    "explanation": "O Eventhouse (KQL Database) é otimizado para dados de séries temporais e alta ingestão de eventos (IoT, logs, telemetria). Suporta ingestão de milhões de eventos por segundo, queries KQL com funções nativas de janelas temporais (bin(), ago(), series_*) e é significativamente mais eficiente que SQL para esses workloads.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/real-time-intelligence/eventhouse"
+  },
+  {
+    "id": "d2-1-11",
+    "domain": 2,
+    "subdomain": "2.1",
+    "topic": "Ingest or access data as needed",
+    "difficulty": "medium",
+    "question": "Um engenheiro quer acessar dados de um bucket do Amazon S3 diretamente de um Lakehouse no Fabric, sem mover os dados para o OneLake. Qual recurso permite isso?",
+    "options": {
+      "A": "Data Pipeline com conector S3",
+      "B": "OneLake Shortcut para Amazon S3",
+      "C": "Mirroring do S3",
+      "D": "Dataflow Gen2 com conector S3"
+    },
+    "correct_answer": "B",
+    "explanation": "OneLake Shortcuts suportam fontes externas como Amazon S3, Azure Data Lake Storage Gen2 e Google Cloud Storage. Um shortcut cria um ponteiro virtual para os dados no S3, tornando-os acessíveis no Lakehouse como se fossem locais, sem copiar ou mover dados. Dataflow (D) copiaria os dados; Shortcut apenas os referencia.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/onelake/onelake-shortcuts"
+  },
+  {
+    "id": "d2-1-12",
+    "domain": 2,
+    "subdomain": "2.1",
+    "topic": "Choose between different data stores",
+    "difficulty": "medium",
+    "question": "Um time de engenharia precisa construir um data warehouse empresarial com esquema estrela, constraints de integridade referencial, views materializadas e suporte a transações ACID completas via T-SQL. Qual data store do Fabric escolher?",
+    "options": {
+      "A": "Lakehouse com tabelas Delta",
+      "B": "Eventhouse KQL Database",
+      "C": "Warehouse",
+      "D": "Dataflow Gen2 com output para Lakehouse"
+    },
+    "correct_answer": "C",
+    "explanation": "O Warehouse do Fabric oferece suporte completo a T-SQL empresarial: constraints (PK, FK, UNIQUE), transações ACID multi-tabela, views materializadas, stored procedures e functions. O Lakehouse usa Delta Lake com Spark (sem constraints relacionais nativas). Para um DW clássico com T-SQL completo, o Warehouse é a escolha correta.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/data-warehouse/data-warehousing"
+  },
+  {
+    "id": "d2-1-13",
+    "domain": 2,
+    "subdomain": "2.1",
+    "topic": "Implement OneLake integration for Eventhouse",
+    "difficulty": "medium",
+    "question": "Um engenheiro habilitou a disponibilidade do OneLake em um KQL Database do Eventhouse. Em qual formato os dados ficam disponíveis no OneLake para acesso pelo Lakehouse?",
+    "options": {
+      "A": "Parquet puro sem suporte a transações",
+      "B": "CSV comprimido com gzip",
+      "C": "Delta Lake (formato Delta/Parquet com transaction log)",
+      "D": "JSON Lines (JSONL)"
+    },
+    "correct_answer": "C",
+    "explanation": "Quando a disponibilidade do OneLake é habilitada no Eventhouse, os dados do KQL Database são expostos no OneLake no formato Delta Lake (arquivos Parquet com transaction log Delta). Isso permite que Lakehouses, notebooks Spark e modelos semânticos em Direct Lake acessem os dados com suporte a operações transacionais.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/real-time-intelligence/event-house-onelake-availability"
+  },
+  {
+    "id": "d2-2-13",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Transform data",
+    "difficulty": "medium",
+    "question": "Em um notebook Spark do Fabric, um engenheiro precisa salvar um DataFrame processado como uma tabela Delta no Lakehouse, substituindo completamente os dados existentes. Qual modo de escrita deve usar?",
+    "options": {
+      "A": "df.write.mode('append').saveAsTable('tabela')",
+      "B": "df.write.mode('overwrite').saveAsTable('tabela')",
+      "C": "df.write.mode('ignore').saveAsTable('tabela')",
+      "D": "df.write.mode('error').saveAsTable('tabela')"
+    },
+    "correct_answer": "B",
+    "explanation": "O modo 'overwrite' no Spark substitui completamente os dados existentes na tabela pelo novo DataFrame. 'append' adiciona dados sem remover os existentes; 'ignore' não faz nada se a tabela já existe; 'error' (padrão) lança exceção se a tabela existe. Para carga full (substituição total), 'overwrite' é o correto.",
+    "reference_url": "https://learn.microsoft.com/en-us/fabric/data-engineering/how-to-use-notebook"
+  },
+  {
+    "id": "d2-2-14",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Implement a star schema for a lakehouse",
+    "difficulty": "hard",
+    "question": "Um Lakehouse precisa rastrear mudanças históricas em dados de clientes (endereço, segmento). Quando um cliente muda de endereço, o histórico de vendas antigas deve manter o endereço antigo. Qual técnica de modelagem deve ser aplicada?",
+    "options": {
+      "A": "Slowly Changing Dimension Tipo 1 (SCD Type 1) — sobrescrever o valor",
+      "B": "Slowly Changing Dimension Tipo 2 (SCD Type 2) — adicionar nova linha com vigência",
+      "C": "Particionamento por data de atualização",
+      "D": "Snapshot diário da dimensão de clientes"
+    },
+    "correct_answer": "B",
+    "explanation": "SCD Type 2 mantém o histórico completo adicionando uma nova linha para cada mudança, com colunas de data_inicio e data_fim (ou flag de ativo/inativo). O histórico de transações antigas referencia a chave surrogate do endereço antigo, preservando o contexto histórico. SCD Type 1 apenas sobrescreve, perdendo o histórico.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/guidance/star-schema"
+  },
+  {
+    "id": "d2-2-15",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Transform data",
+    "difficulty": "medium",
+    "question": "Em um Data Pipeline do Fabric, um engenheiro precisa executar uma atividade de cópia para cada arquivo em uma lista dinâmica de fontes. Qual atividade do pipeline deve usar para iterar sobre essa lista?",
+    "options": {
+      "A": "If Condition",
+      "B": "Switch",
+      "C": "ForEach",
+      "D": "Until"
+    },
+    "correct_answer": "C",
+    "explanation": "A atividade ForEach em Data Pipelines itera sobre uma coleção (array) de itens e executa atividades internas para cada elemento. É usada para processar listas dinâmicas de arquivos, tabelas ou parâmetros. If Condition avalia uma condição booleana; Switch escolhe entre múltiplos casos; Until executa até uma condição ser verdadeira.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/data-factory/data-factory-overview"
+  },
+  {
+    "id": "d2-2-16",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Transform data",
+    "difficulty": "medium",
+    "question": "Um engenheiro precisa implementar um padrão de upsert (insert + update) em uma tabela Delta do Lakehouse usando Spark. Qual operação Delta Lake é mais adequada?",
+    "options": {
+      "A": "deltaTable.insert()",
+      "B": "deltaTable.merge()",
+      "C": "deltaTable.update()",
+      "D": "df.write.mode('overwrite')"
+    },
+    "correct_answer": "B",
+    "explanation": "O comando MERGE do Delta Lake (DeltaTable.merge()) implementa o padrão upsert: quando uma linha da fonte coincide com uma linha existente (matched), faz UPDATE; quando não coincide (not matched), faz INSERT. É o equivalente ao MERGE SQL, eficiente para cargas incrementais que atualizam registros existentes e inserem novos.",
+    "reference_url": "https://learn.microsoft.com/en-us/fabric/data-engineering/how-to-use-notebook"
+  },
+  {
+    "id": "d2-2-17",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Transform data",
+    "difficulty": "easy",
+    "question": "Um engenheiro precisa calcular o total acumulado (running total) de vendas por data em uma query SQL do Warehouse do Fabric. Qual recurso SQL deve usar?",
+    "options": {
+      "A": "GROUP BY com SUM()",
+      "B": "SUM() com OVER (ORDER BY data ROWS UNBOUNDED PRECEDING)",
+      "C": "CUMSUM() função nativa do SQL",
+      "D": "Subquery correlacionada com SUM()"
+    },
+    "correct_answer": "B",
+    "explanation": "Funções de janela (window functions) com a cláusula OVER permitem calcular agregações sobre um conjunto de linhas relacionadas sem agrupar o resultado. SUM() com OVER (ORDER BY data ROWS UNBOUNDED PRECEDING) calcula a soma acumulada desde o início até a linha atual, ideal para running totals.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/data-warehouse/query-warehouse"
+  },
+  {
+    "id": "d2-2-18",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Transform data",
+    "difficulty": "medium",
+    "question": "Um Dataflow Gen2 ingere dados de vendas de múltiplas filiais com schemas ligeiramente diferentes (algumas têm coluna 'desconto', outras não). Qual transformação Power Query combina essas tabelas preservando todas as colunas?",
+    "options": {
+      "A": "Merge Queries (JOIN)",
+      "B": "Append Queries",
+      "C": "Group By",
+      "D": "Pivot Column"
+    },
+    "correct_answer": "B",
+    "explanation": "Append Queries (equivalente ao UNION em SQL) empilha linhas de múltiplas tabelas verticalmente. Quando as tabelas têm schemas diferentes, o Power Query preenche com null as colunas ausentes em cada fonte. Merge Queries faz JOIN horizontal (combina colunas de tabelas relacionadas, não empilha linhas).",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-query/append-queries"
+  },
+  {
+    "id": "d2-2-19",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Transform data",
+    "difficulty": "hard",
+    "question": "Um engenheiro usa um Dataflow Gen2 para transformar dados e percebe que uma query complexa está demorando muito. Ele suspeita que o 'query folding' não está acontecendo. O que é query folding e por que é importante?",
+    "options": {
+      "A": "Processo de comprimir queries para economizar memória durante a execução",
+      "B": "Capacidade do Power Query de traduzir transformações em queries nativas da fonte (SQL, etc.), executando o processamento na fonte em vez de localmente",
+      "C": "Técnica de dividir queries longas em múltiplas etapas para melhor legibilidade",
+      "D": "Mecanismo de cache que armazena resultados de queries para reutilização"
+    },
+    "correct_answer": "B",
+    "explanation": "Query folding é a capacidade do Power Query de traduzir transformações (filtros, ordenações, agregações) em queries nativas da fonte de dados (SQL, OData, etc.), enviando o processamento para o servidor de origem em vez de trazer todos os dados para o Fabric e processar localmente. Sem folding, o Dataflow traz todos os dados e processa na memória, o que é muito mais lento para grandes volumes.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-query/power-query-folding"
+  },
+  {
+    "id": "d2-2-20",
+    "domain": 2,
+    "subdomain": "2.2",
+    "topic": "Aggregate data",
+    "difficulty": "medium",
+    "question": "Um analista precisa calcular a mediana de vendas por região em uma query SQL no Warehouse do Fabric. Qual função SQL deve usar?",
+    "options": {
+      "A": "AVG(valor)",
+      "B": "MEDIAN(valor)",
+      "C": "PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY valor)",
+      "D": "MIDDLE(valor)"
+    },
+    "correct_answer": "C",
+    "explanation": "SQL não tem uma função MEDIAN() nativa. A mediana é calculada com PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY coluna), que retorna o valor no percentil 50 (mediana). PERCENTILE_DISC(0.5) retorna um valor existente na distribuição; PERCENTILE_CONT interpola se necessário.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/data-warehouse/query-warehouse"
+  },
+  {
+    "id": "d2-3-9",
+    "domain": 2,
+    "subdomain": "2.3",
+    "topic": "Select and aggregate data using DAX",
+    "difficulty": "medium",
+    "question": "Uma medida DAX precisa retornar o total de vendas ignorando todos os filtros do relatório exceto o filtro de Ano. Qual função remove todos os filtros exceto os especificados?",
+    "options": {
+      "A": "ALL()",
+      "B": "ALLEXCEPT(Vendas, DimData[Ano])",
+      "C": "ALLSELECTED()",
+      "D": "REMOVEFILTERS()"
+    },
+    "correct_answer": "B",
+    "explanation": "ALLEXCEPT(tabela, coluna1, coluna2...) remove todos os filtros da tabela especificada, exceto os filtros nas colunas listadas. No exemplo, remove todos os filtros de Vendas exceto o filtro de Ano em DimData. ALL() remove todos os filtros sem exceção; ALLSELECTED() respeita filtros externos ao visual.",
+    "reference_url": "https://learn.microsoft.com/pt-br/dax/allexcept-function-dax"
+  },
+  {
+    "id": "d2-3-10",
+    "domain": 2,
+    "subdomain": "2.3",
+    "topic": "Select and aggregate data using KQL",
+    "difficulty": "medium",
+    "question": "Em um KQL Database, um analista quer calcular a contagem de eventos por tipo e hora, ordenado pelo tipo com maior número de eventos primeiro. Qual é a estrutura KQL correta?",
+    "options": {
+      "A": "eventos | count by tipo | sort by Count desc",
+      "B": "eventos | summarize Count=count() by tipo, bin(timestamp, 1h) | order by Count desc",
+      "C": "SELECT tipo, COUNT(*) FROM eventos GROUP BY tipo ORDER BY 2 DESC",
+      "D": "eventos | group by tipo | count | order by Count desc"
+    },
+    "correct_answer": "B",
+    "explanation": "Em KQL, 'summarize' agrega dados (equivalente ao GROUP BY do SQL). 'count()' conta os registros, 'bin(timestamp, 1h)' agrupa em janelas de 1 hora, e 'order by Count desc' ordena pelo total. 'summarize' seguido de 'order by' é o padrão KQL para agregações ordenadas.",
+    "reference_url": "https://learn.microsoft.com/pt-br/azure/data-explorer/kusto/query/"
+  },
+  {
+    "id": "d2-3-11",
+    "domain": 2,
+    "subdomain": "2.3",
+    "topic": "Select and aggregate data using SQL",
+    "difficulty": "medium",
+    "question": "Um analista precisa escrever uma query SQL no Warehouse que calcula vendas por categoria e também o percentual de cada categoria sobre o total geral, tudo em uma única query. Qual recurso SQL é mais adequado?",
+    "options": {
+      "A": "Subquery no SELECT com SUM() total",
+      "B": "CTE (Common Table Expression) com WITH para calcular o total e depois o percentual",
+      "C": "VIEW com os totais pré-calculados",
+      "D": "JOIN da tabela consigo mesma (self-join)"
+    },
+    "correct_answer": "B",
+    "explanation": "CTEs (WITH ... AS) permitem definir resultados intermediários reutilizáveis na mesma query. Um CTE pode calcular o total geral e outro o total por categoria; o SELECT final combina ambos para calcular o percentual. É mais legível que subqueries aninhadas e mais eficiente que JOINs desnecessários.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/data-warehouse/query-warehouse"
+  },
+  {
+    "id": "d2-3-12",
+    "domain": 2,
+    "subdomain": "2.3",
+    "topic": "Select and aggregate data using DAX",
+    "difficulty": "hard",
+    "question": "Uma medida DAX precisa retornar o rank de cada produto pelo total de vendas, onde o produto com maior venda tem rank 1, e produtos com mesmo valor recebem o mesmo rank. Qual função DAX usar?",
+    "options": {
+      "A": "RANK.EQ()",
+      "B": "RANKX(ALL(Produtos), [Total Vendas])",
+      "C": "RANKX(Produtos, [Total Vendas], , DESC, Dense)",
+      "D": "TOPN(1, Produtos, [Total Vendas])"
+    },
+    "correct_answer": "C",
+    "explanation": "RANKX() calcula o rank de um valor em um contexto de tabela. O parâmetro 'Dense' garante que empates recebam o mesmo rank sem pular números (1, 1, 2 em vez de 1, 1, 3). ALL(Produtos) remove o contexto de filtro para ranquear todos os produtos. DESC coloca o maior valor no rank 1.",
+    "reference_url": "https://learn.microsoft.com/pt-br/dax/rankx-function-dax"
+  },
+  {
+    "id": "d2-3-13",
+    "domain": 2,
+    "subdomain": "2.3",
+    "topic": "Select and aggregate data using DAX",
+    "difficulty": "medium",
+    "question": "Um analista quer criar uma medida que exibe o total de vendas acumulado desde o início do ano até a data atual no contexto de filtro. Qual função DAX de time intelligence usar?",
+    "options": {
+      "A": "DATESYTD()",
+      "B": "TOTALYTD([Total Vendas], DimData[Data])",
+      "C": "CALCULATE([Total Vendas], DATESYTD(DimData[Data]))",
+      "D": "B e C são equivalentes e ambas corretas"
+    },
+    "correct_answer": "D",
+    "explanation": "TOTALYTD([Medida], Tabela[Data]) é um atalho para CALCULATE([Medida], DATESYTD(Tabela[Data])). Ambas calculam o acumulado Year-To-Date. DATESYTD() retorna uma tabela de datas do início do ano até a última data no contexto atual. As duas formas são funcionalmente idênticas — TOTALYTD é apenas mais concisa.",
+    "reference_url": "https://learn.microsoft.com/pt-br/dax/totalytd-function-dax"
+  },
+  {
+    "id": "d3-1-10",
+    "domain": 3,
+    "subdomain": "3.1",
+    "topic": "Implement relationships",
+    "difficulty": "hard",
+    "question": "Um modelo semântico tem duas tabelas de fatos (Vendas e Metas) conectadas à mesma tabela de datas, mas o relacionamento ativo é apenas com Vendas. Uma medida de Metas precisa usar o filtro de data. Qual função DAX habilita o relacionamento inativo temporariamente?",
+    "options": {
+      "A": "RELATED()",
+      "B": "CROSSFILTER()",
+      "C": "USERELATIONSHIP(DimData[Data], Metas[DataMeta])",
+      "D": "TREATAS()"
+    },
+    "correct_answer": "C",
+    "explanation": "USERELATIONSHIP() dentro de um CALCULATE() ativa um relacionamento inativo para o contexto daquela medida. Como um modelo só pode ter um relacionamento ativo entre duas tabelas, relacionamentos adicionais ficam inativos e precisam de USERELATIONSHIP() para serem usados. Isso é comum em role-playing dimensions como tabelas de data.",
+    "reference_url": "https://learn.microsoft.com/pt-br/dax/userelationship-function-dax"
+  },
+  {
+    "id": "d3-1-11",
+    "domain": 3,
+    "subdomain": "3.1",
+    "topic": "Implement relationships",
+    "difficulty": "medium",
+    "question": "Um modelo tem um relacionamento bidirecional (Cross Filter Direction: Both) entre Vendas e Produtos. Qual é o principal risco de usar filtros bidirecionais indiscriminadamente?",
+    "options": {
+      "A": "O modelo não consegue calcular medidas com CALCULATE()",
+      "B": "Podem causar ambiguidade de filtro, resultados inesperados e degradação de performance",
+      "C": "O modo Direct Lake deixa de funcionar com filtros bidirecionais",
+      "D": "O RLS não funciona com relacionamentos bidirecionais"
+    },
+    "correct_answer": "B",
+    "explanation": "Relacionamentos bidirecionais permitem que filtros fluam em ambas as direções entre tabelas, o que pode criar caminhos de filtro ambíguos em modelos complexos, gerando resultados incorretos ou inesperados. Também impactam a performance porque o motor DAX precisa avaliar mais caminhos de filtro. A Microsoft recomenda usar bidirecionais apenas quando necessário.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/guidance/relationships-bidirectional-filtering"
+  },
+  {
+    "id": "d3-1-12",
+    "domain": 3,
+    "subdomain": "3.1",
+    "topic": "Implement dynamic format strings",
+    "difficulty": "hard",
+    "question": "Uma medida DAX precisa mostrar valores como '1.2M' para milhões, '500K' para milhares e '250' para valores menores. Qual recurso do modelo semântico permite aplicar formatação dinâmica baseada no valor?",
+    "options": {
+      "A": "Coluna calculada com lógica de formatação",
+      "B": "Calculation group com itens de formatação",
+      "C": "Dynamic format string na propriedade 'Format' da medida",
+      "D": "Medida auxiliar de texto com CONCATENATE()"
+    },
+    "correct_answer": "C",
+    "explanation": "Dynamic format strings permitem usar uma expressão DAX na propriedade de formato de uma medida, em vez de um formato fixo. A expressão pode retornar '#,##0.0,,\"M\"' para milhões ou '#,##0,\"K\"' para milhares baseado no valor. Isso mantém o tipo numérico (para sorting correto) enquanto mostra o texto formatado.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/create-reports/desktop-dynamic-format-strings"
+  },
+  {
+    "id": "d3-1-13",
+    "domain": 3,
+    "subdomain": "3.1",
+    "topic": "Choose a storage mode",
+    "difficulty": "medium",
+    "question": "Um modelo semântico tem uma tabela de dimensão pequena (10.000 linhas, raramente atualizada) e uma tabela de fatos grande em Direct Lake. Para otimizar a performance de queries cruzando dimensão e fato, qual storage mode é recomendado para a dimensão?",
+    "options": {
+      "A": "Direct Lake",
+      "B": "DirectQuery",
+      "C": "Import",
+      "D": "Dual"
+    },
+    "correct_answer": "D",
+    "explanation": "O modo Dual faz com que a tabela seja armazenada tanto em Import (cache in-memory) quanto disponível via DirectQuery/Direct Lake. Quando consultada junto com tabelas em Direct Lake, o motor usa a cópia em cache (alta performance). Quando consultada isoladamente, usa Import. É o modo ideal para dimensões pequenas em modelos compostos com Direct Lake.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/transform-model/desktop-storage-mode"
+  },
+  {
+    "id": "d3-1-14",
+    "domain": 3,
+    "subdomain": "3.1",
+    "topic": "Write calculations using DAX",
+    "difficulty": "hard",
+    "question": "Uma medida DAX precisa retornar os nomes dos top 3 produtos por vendas como uma string concatenada (ex: 'Produto A, Produto B, Produto C'). Qual função DAX itera e concatena valores de texto?",
+    "options": {
+      "A": "CONCATENATEX(TOPN(3, Produtos, [Vendas]), Produtos[Nome], \", \")",
+      "B": "COMBINEVALUES(\", \", Produtos[Nome])",
+      "C": "SUMX(TOPN(3, Produtos, [Vendas]), Produtos[Nome])",
+      "D": "UNION(TOPN(3, Produtos, [Vendas]))"
+    },
+    "correct_answer": "A",
+    "explanation": "CONCATENATEX() itera sobre uma tabela e concatena os valores de uma expressão em cada linha, usando um delimitador. Combinado com TOPN(3, Produtos, [Vendas]) que retorna os 3 produtos com mais vendas, produz a string concatenada dos top 3. É a função iteradora equivalente ao SUMX, mas para concatenação de texto.",
+    "reference_url": "https://learn.microsoft.com/pt-br/dax/concatenatex-function-dax"
+  },
+  {
+    "id": "d3-2-8",
+    "domain": 3,
+    "subdomain": "3.2",
+    "topic": "Implement performance improvements in queries",
+    "difficulty": "medium",
+    "question": "Um engenheiro analisa uma medida DAX lenta e percebe que ela usa FILTER(Vendas, Vendas[Valor] > 0) dentro de um CALCULATE(). Qual otimização deve aplicar?",
+    "options": {
+      "A": "Substituir FILTER(Vendas, Vendas[Valor] > 0) por Vendas[Valor] > 0 diretamente no CALCULATE()",
+      "B": "Adicionar um índice na coluna Valor da tabela Vendas",
+      "C": "Converter a tabela Vendas para modo DirectQuery",
+      "D": "Usar KEEPFILTERS() em vez de FILTER()"
+    },
+    "correct_answer": "A",
+    "explanation": "Usar um predicado de filtro booleano direto no CALCULATE() (ex: CALCULATE([Medida], Vendas[Valor] > 0)) é mais eficiente que FILTER(Vendas, Vendas[Valor] > 0) porque o primeiro usa o Storage Engine otimizado enquanto o segundo itera linha a linha via Formula Engine. Esta é uma das otimizações DAX mais impactantes.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/guidance/dax-avoid-avoid-filter-as-filter-argument"
+  },
+  {
+    "id": "d3-2-9",
+    "domain": 3,
+    "subdomain": "3.2",
+    "topic": "Implement performance improvements",
+    "difficulty": "hard",
+    "question": "Um modelo semântico com 500 milhões de linhas na tabela de fatos tem queries lentas em relatórios que mostram totais por ano e categoria. O engenheiro cria uma tabela agregada com totais pré-calculados. Como configurar o modelo para usar essa agregação automaticamente?",
+    "options": {
+      "A": "Renomear a tabela agregada para que o Power BI a identifique automaticamente",
+      "B": "Configurar Aggregations na tabela de fatos, mapeando colunas para a tabela agregada",
+      "C": "Criar uma medida DAX que escolhe entre a tabela detalhada e a agregada",
+      "D": "Usar o modo Dual na tabela de fatos para ativar agregações"
+    },
+    "correct_answer": "B",
+    "explanation": "O recurso Aggregations no Power BI/Fabric permite configurar mapeamentos entre colunas da tabela de fatos detalhada e uma tabela de agregações pré-calculada. Quando uma query pode ser resolvida pela tabela agregada (ex: total por ano/categoria), o motor usa automaticamente a agregação em vez de varrer 500 milhões de linhas, acelerando drasticamente as queries.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/enterprise/aggregations-auto"
+  },
+  {
+    "id": "d3-2-10",
+    "domain": 3,
+    "subdomain": "3.2",
+    "topic": "Configure Direct Lake",
+    "difficulty": "medium",
+    "question": "Um modelo semântico em Direct Lake precisa ser atualizado para refletir novos dados adicionados ao Lakehouse. Qual é o comportamento padrão do Direct Lake em relação à atualização de dados?",
+    "options": {
+      "A": "O modelo precisa ser atualizado manualmente (como Import mode) para ver novos dados",
+      "B": "O Direct Lake lê os dados mais recentes automaticamente a cada query, sem necessidade de atualização do modelo",
+      "C": "Os dados são atualizados a cada 15 minutos automaticamente",
+      "D": "O modelo precisa de um scheduled refresh diário configurado no portal"
+    },
+    "correct_answer": "B",
+    "explanation": "Direct Lake acessa os arquivos Delta do OneLake diretamente a cada query, lendo sempre a versão mais recente dos dados sem necessidade de atualização do modelo semântico. Isso é uma vantagem fundamental sobre o Import mode (que requer refresh agendado). O modelo 'framing' (carregamento do esquema) pode ser necessário, mas não é equivalente ao refresh do Import mode.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/get-started/direct-lake-overview"
+  },
+  {
+    "id": "d3-2-11",
+    "domain": 3,
+    "subdomain": "3.2",
+    "topic": "Implement incremental refresh for semantic models",
+    "difficulty": "medium",
+    "question": "Ao configurar incremental refresh em um modelo semântico, quais parâmetros obrigatórios do Power Query definem o intervalo de dados que será filtrado?",
+    "options": {
+      "A": "StartDate e EndDate como parâmetros de texto",
+      "B": "RangeStart e RangeEnd como parâmetros do tipo Date/Time",
+      "C": "IncrementalStart e IncrementalEnd como parâmetros numéricos",
+      "D": "FilterFrom e FilterTo como parâmetros de data"
+    },
+    "correct_answer": "B",
+    "explanation": "O incremental refresh requer exatamente dois parâmetros Power Query com nomes reservados: RangeStart e RangeEnd, ambos do tipo Date/Time. O Power Query usa esses parâmetros para filtrar os dados na fonte (se houver query folding). O sistema substitui automaticamente os valores desses parâmetros em cada partição durante o refresh.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/connect-data/incremental-refresh-configure"
+  },
+  {
+    "id": "d3-2-12",
+    "domain": 3,
+    "subdomain": "3.2",
+    "topic": "Implement performance improvements in report visuals",
+    "difficulty": "easy",
+    "question": "Um relatório do Power BI tem um gráfico que demora 8 segundos para carregar. Um engenheiro quer identificar qual parte do processo (DAX, renderização visual, ou carregamento de dados) está causando a lentidão. Qual ferramenta nativa do Power BI Desktop deve usar?",
+    "options": {
+      "A": "DAX Studio",
+      "B": "Performance Analyzer no Power BI Desktop",
+      "C": "SQL Server Profiler via XMLA",
+      "D": "Azure Monitor"
+    },
+    "correct_answer": "B",
+    "explanation": "O Performance Analyzer no Power BI Desktop (aba View → Performance Analyzer) registra o tempo de cada visual separando em: DAX query (tempo da consulta DAX), Visual display (tempo de renderização) e Other (tempo de outros processos). É a ferramenta inicial para diagnosticar lentidão em relatórios sem precisar de ferramentas externas.",
+    "reference_url": "https://learn.microsoft.com/pt-br/power-bi/create-reports/desktop-performance-analyzer"
+  },
+  {
+    "id": "d1-1-13",
+    "domain": 1,
+    "subdomain": "1.1",
+    "topic": "Implement row-level security",
+    "difficulty": "hard",
+    "question": "Um modelo semântico tem RLS configurado. Um usuário com papel de 'Viewer' no workspace vê apenas os dados da sua região. Um Admin do workspace vê todos os dados sem restrição. Por que o Admin não é afetado pelo RLS?",
+    "options": {
+      "A": "O Admin precisa desativar o RLS manualmente para si mesmo nas configurações",
+      "B": "Admins e Members do workspace têm bypass de RLS por padrão por terem permissão de edição no modelo",
+      "C": "O RLS só se aplica a usuários externos à organização Azure AD",
+      "D": "O RLS precisa ser ativado separadamente para cada função do workspace"
+    },
+    "correct_answer": "B",
+    "explanation": "No Microsoft Fabric e Power BI Service, usuários com funções de Admin ou Member no workspace têm acesso de edição ao modelo semântico e não estão sujeitos ao RLS — veem todos os dados. Apenas usuários com papel de Viewer (ou acesso via App publicado) ficam sujeitos às regras de RLS. Para testar o RLS como um usuário comum, use 'Exibir como role' no portal.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/security/service-admin-row-level-security"
+  },
+  {
+    "id": "d2-1-14",
+    "domain": 2,
+    "subdomain": "2.1",
+    "topic": "Ingest or access data as needed",
+    "difficulty": "medium",
+    "question": "Uma empresa precisa ingerir dados de um tópico do Apache Kafka para o Microsoft Fabric em tempo real para análise. Qual recurso do Fabric é o ponto de entrada adequado para essa ingestão contínua?",
+    "options": {
+      "A": "Dataflow Gen2 com conector Kafka e atualização agendada",
+      "B": "Data Pipeline com atividade Copy Data configurada para Kafka",
+      "C": "Eventstream com source do Apache Kafka",
+      "D": "Lakehouse com API REST de ingestão em batch"
+    },
+    "correct_answer": "C",
+    "explanation": "O Eventstream do Microsoft Fabric é o serviço de streaming em tempo real que suporta múltiplas fontes incluindo Apache Kafka, Azure Event Hubs e Azure IoT Hub. Dados do Kafka são ingeridos continuamente e podem ser roteados para Lakehouse, Eventhouse (KQL Database) ou outros destinos do Fabric. Dataflow Gen2 e Data Pipeline são soluções batch, não de streaming contínuo.",
+    "reference_url": "https://learn.microsoft.com/pt-br/fabric/real-time-intelligence/event-streams/overview"
+  },
+  {
+    "id": "d3-1-15",
+    "domain": 3,
+    "subdomain": "3.1",
+    "topic": "Write calculations using DAX",
+    "difficulty": "medium",
+    "question": "Uma medida DAX precisa calcular as vendas do mesmo período do ano anterior para comparação. Qual par de funções DAX de time intelligence pode ser usado para isso?",
+    "options": {
+      "A": "PREVIOUSYEAR() ou LASTDATE()",
+      "B": "SAMEPERIODLASTYEAR(DimData[Data]) ou DATEADD(DimData[Data], -1, YEAR)",
+      "C": "DATESINPERIOD() ou PARALLELPERIOD(DimData[Data], -12, MONTH)",
+      "D": "B e C são ambas corretas e equivalentes"
+    },
+    "correct_answer": "B",
+    "explanation": "SAMEPERIODLASTYEAR(DimData[Data]) e DATEADD(DimData[Data], -1, YEAR) retornam o mesmo resultado: o conjunto de datas correspondente ao mesmo período do ano anterior. SAMEPERIODLASTYEAR é um atalho mais legível; DATEADD com -1 YEAR é mais flexível (permite -2 anos, -3 meses etc.). Ambas funcionam dentro de CALCULATE() para calcular métricas do ano anterior.",
+    "reference_url": "https://learn.microsoft.com/pt-br/dax/sameperiodlastyear-function-dax"
+  }
+]
